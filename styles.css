@@ -238,6 +238,12 @@ h1 {
   stroke-width: 1;
 }
 
+.axis-label {
+  fill: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
 .price-line {
   fill: none;
   stroke: var(--blue);
@@ -268,6 +274,19 @@ h1 {
   stroke: #11151b;
   stroke-width: 3px;
   stroke-linejoin: round;
+}
+
+.latest-price-pill {
+  fill: rgba(106, 167, 255, 0.22);
+  stroke: rgba(106, 167, 255, 0.72);
+  stroke-width: 1;
+}
+
+.latest-price-text {
+  fill: #f4f7fb;
+  font-size: 12px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
 }
 
 .empty-markers {

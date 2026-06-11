@@ -13,8 +13,10 @@ const updatedAtText = document.querySelector("#updatedAt");
 const sourceText = document.querySelector("#sourceText");
 const chartMeta = document.querySelector("#chartMeta");
 const gridLayer = document.querySelector("#gridLayer");
+const axisLayer = document.querySelector("#axisLayer");
 const priceLine = document.querySelector("#priceLine");
 const markerLayer = document.querySelector("#markerLayer");
+const priceLabelLayer = document.querySelector("#priceLabelLayer");
 const emptyMarkers = document.querySelector("#emptyMarkers");
 
 function formatDate(value) {
@@ -112,8 +114,9 @@ function scale(value, fromMin, fromMax, toMin, toMax) {
   return toMin + ((value - fromMin) / (fromMax - fromMin)) * (toMax - toMin);
 }
 
-function drawGrid(width, height, pad) {
+function drawGrid(width, height, pad, minPrice, maxPrice) {
   gridLayer.replaceChildren();
+  axisLayer.replaceChildren();
   for (let index = 0; index <= 4; index += 1) {
     const y = pad + ((height - pad * 2) / 4) * index;
     const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -123,7 +126,40 @@ function drawGrid(width, height, pad) {
     line.setAttribute("y1", y);
     line.setAttribute("y2", y);
     gridLayer.append(line);
+
+    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    const price = maxPrice - ((maxPrice - minPrice) / 4) * index;
+    label.setAttribute("class", "axis-label");
+    label.setAttribute("x", width - 8);
+    label.setAttribute("y", y + 4);
+    label.setAttribute("text-anchor", "end");
+    label.textContent = formatPrice(price);
+    axisLayer.append(label);
   }
+}
+
+function drawLatestPrice(point, price, width) {
+  priceLabelLayer.replaceChildren();
+  const label = formatPrice(price);
+  const labelWidth = Math.max(76, label.length * 8 + 18);
+  const x = Math.min(point.x + 10, width - labelWidth - 8);
+  const y = Math.max(12, point.y - 18);
+
+  const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("class", "latest-price-pill");
+  rect.setAttribute("x", x);
+  rect.setAttribute("y", y);
+  rect.setAttribute("width", labelWidth);
+  rect.setAttribute("height", 24);
+  rect.setAttribute("rx", 8);
+  priceLabelLayer.append(rect);
+
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("class", "latest-price-text");
+  text.setAttribute("x", x + 9);
+  text.setAttribute("y", y + 16);
+  text.textContent = label;
+  priceLabelLayer.append(text);
 }
 
 function renderChart(chart) {
@@ -131,11 +167,11 @@ function renderChart(chart) {
   const markers = chart.markers || [];
   const width = 720;
   const height = 280;
-  const pad = 24;
+  const pad = 32;
 
   chartMeta.textContent = `${chart.instId || "--"} ${chart.bar || ""}`;
-  drawGrid(width, height, pad);
   markerLayer.replaceChildren();
+  priceLabelLayer.replaceChildren();
 
   if (candles.length < 2) {
     priceLine.setAttribute("d", "");
@@ -150,10 +186,14 @@ function renderChart(chart) {
   const minPrice = Math.min(...prices);
   const maxPrice = Math.max(...prices);
   const pricePad = (maxPrice - minPrice) * 0.08 || 1;
+  const axisMin = minPrice - pricePad;
+  const axisMax = maxPrice + pricePad;
+
+  drawGrid(width, height, pad, axisMin, axisMax);
 
   const pointFor = (ts, price) => ({
     x: scale(ts, minTs, maxTs, pad, width - pad),
-    y: scale(price, minPrice - pricePad, maxPrice + pricePad, height - pad, pad),
+    y: scale(price, axisMin, axisMax, height - pad, pad),
   });
 
   const path = candles
@@ -163,6 +203,8 @@ function renderChart(chart) {
     })
     .join(" ");
   priceLine.setAttribute("d", path);
+  const latest = candles[candles.length - 1];
+  drawLatestPrice(pointFor(latest.ts, latest.close), latest.close, width);
 
   let visibleMarkers = 0;
   for (const marker of markers) {
@@ -181,7 +223,7 @@ function renderChart(chart) {
     label.setAttribute("class", "marker-label");
     label.setAttribute("x", point.x + 10);
     label.setAttribute("y", point.y - 9);
-    label.textContent = side === "sell" ? "SELL" : "BUY";
+    label.textContent = `${side === "sell" ? "SELL" : "BUY"} ${formatPrice(marker.price)}`;
     markerLayer.append(label);
     visibleMarkers += 1;
   }
