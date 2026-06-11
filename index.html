@@ -3,50 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Operation Live View</title>
+    <title>Trading Monitor</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="app">
-      <section class="hero">
+      <section class="topbar">
         <div>
-          <p class="eyebrow">Trading Monitor</p>
+          <p class="eyebrow">OKX Paper Runner</p>
           <h1>自動交易監控</h1>
-          <p class="summary">
-            顯示 OKX paper 自動交易 runner 的最新決策、訊號與執行紀錄。
-          </p>
         </div>
         <button id="refreshButton" class="primary-button">刷新</button>
       </section>
 
-      <section class="dashboard">
-        <div class="panel status-panel">
-          <p class="panel-label">目前狀態</p>
-          <div id="status" class="status">HOLD / HOLD</div>
-          <dl class="metric-list">
-            <div>
-              <dt>標的</dt>
-              <dd id="instrument">BTC-USDT</dd>
+      <section class="visual-grid">
+        <div id="signalPanel" class="panel signal-panel signal-hold">
+          <div class="panel-heading">
+            <p class="panel-label">目前訊號</p>
+            <span id="updatedAt" class="updated-at">06/12 05:56:25</span>
+          </div>
+
+          <div class="signal-visual">
+            <div id="signalRing" class="signal-ring">
+              <div class="signal-core">
+                <span id="signalValue" class="signal-value">HOLD</span>
+                <span id="actionValue" class="action-value">action: hold</span>
+              </div>
             </div>
-            <div>
-              <dt>策略</dt>
-              <dd id="strategy">trend-long-short</dd>
-            </div>
-            <div>
-              <dt>最新價格</dt>
-              <dd id="lastClose">63,463.3</dd>
-            </div>
-            <div>
-              <dt>模式</dt>
-              <dd id="mode">paper / execute=false</dd>
-            </div>
-          </dl>
+          </div>
+
+          <p id="reasonText" class="reason-text">no trend cross</p>
         </div>
 
-        <div class="panel log-panel">
+        <div class="metric-grid">
+          <div class="metric-card">
+            <p>標的</p>
+            <strong id="instrument">BTC-USDT</strong>
+          </div>
+          <div class="metric-card">
+            <p>最新價格</p>
+            <strong id="lastClose">63,463.3</strong>
+          </div>
+          <div class="metric-card">
+            <p>策略</p>
+            <strong id="strategy">trend-long-short</strong>
+          </div>
+          <div class="metric-card">
+            <p>模式</p>
+            <strong id="mode">paper / execute=false</strong>
+          </div>
+        </div>
+
+        <div class="panel flow-panel">
           <div class="panel-heading">
-            <p class="panel-label">最新決策</p>
-            <span id="updatedAt" class="updated-at">更新 06/12 05:56:25</span>
+            <p class="panel-label">決策流程</p>
+            <span id="sourceText" class="updated-at">quant-trading-okx</span>
+          </div>
+          <ol id="flowList" class="flow-list">
+            <li class="flow-step done">
+              <span class="flow-dot"></span>
+              <div>
+                <strong>取得市場資料</strong>
+                <p>BTC-USDT 1H candle</p>
+              </div>
+            </li>
+            <li class="flow-step done">
+              <span class="flow-dot"></span>
+              <div>
+                <strong>套用策略</strong>
+                <p>trend-long-short</p>
+              </div>
+            </li>
+            <li class="flow-step safe">
+              <span class="flow-dot"></span>
+              <div>
+                <strong>安全閘</strong>
+                <p>paper mode, execute=false</p>
+              </div>
+            </li>
+            <li class="flow-step idle">
+              <span class="flow-dot"></span>
+              <div>
+                <strong>決策</strong>
+                <p>hold: no trend cross</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="panel detail-panel">
+          <div class="panel-heading">
+            <p class="panel-label">最新紀錄</p>
+            <span class="updated-at">auto refresh 60s</span>
           </div>
           <ol id="logList" class="log-list">
             <li class="log-item">
@@ -66,6 +114,6 @@
       </section>
     </main>
 
-    <script src="./script.js?v=20260612-0601"></script>
+    <script src="./script.js?v=20260612-0608"></script>
   </body>
 </html>

@@ -1,15 +1,16 @@
 const refreshButton = document.querySelector("#refreshButton");
-const statusText = document.querySelector("#status");
+const signalPanel = document.querySelector("#signalPanel");
+const signalValue = document.querySelector("#signalValue");
+const actionValue = document.querySelector("#actionValue");
+const reasonText = document.querySelector("#reasonText");
 const logList = document.querySelector("#logList");
+const flowList = document.querySelector("#flowList");
 const instrumentText = document.querySelector("#instrument");
 const strategyText = document.querySelector("#strategy");
 const lastCloseText = document.querySelector("#lastClose");
 const modeText = document.querySelector("#mode");
 const updatedAtText = document.querySelector("#updatedAt");
-
-const fallbackRows = [
-  ["--", "等待自動交易 runner 發布第一筆資料"],
-];
+const sourceText = document.querySelector("#sourceText");
 
 function formatDate(value) {
   if (!value) return "--";
@@ -45,19 +46,48 @@ function setRows(rows) {
   }
 }
 
+function setFlow(payload, snapshot, reason, signal) {
+  const flow = [
+    ["取得市場資料", `${payload.instId || "--"} 1H candle`, "done"],
+    ["套用策略", payload.strategy || "--", "done"],
+    ["安全閘", `${snapshot.mode || "--"} mode, ${payload.execute ? "execute=true" : "execute=false"}`, "safe"],
+    ["決策", `${signal}: ${reason}`, signal === "hold" ? "idle" : signal],
+  ];
+
+  flowList.replaceChildren();
+  for (const [title, detail, state] of flow) {
+    const item = document.createElement("li");
+    item.className = `flow-step ${state}`;
+    item.innerHTML = `
+      <span class="flow-dot"></span>
+      <div>
+        <strong>${title}</strong>
+        <p>${detail}</p>
+      </div>
+    `;
+    flowList.append(item);
+  }
+}
+
 function renderSnapshot(snapshot) {
   const payload = snapshot.payload || {};
-  const signal = payload.signal || payload.action || "unknown";
-  const action = payload.action || "unknown";
+  const signal = (payload.signal || payload.action || "unknown").toLowerCase();
+  const action = (payload.action || "unknown").toLowerCase();
   const reason = payload.reason || payload.decision?.reason || "no reason";
   const execute = payload.execute === true ? "execute=true" : "execute=false";
 
-  statusText.textContent = `${action.toUpperCase()} / ${signal.toUpperCase()}`;
+  signalPanel.className = `panel signal-panel signal-${signal}`;
+  signalValue.textContent = signal.toUpperCase();
+  actionValue.textContent = `action: ${action}`;
+  reasonText.textContent = reason;
   instrumentText.textContent = payload.instId || payload.position?.inst_id || "--";
   strategyText.textContent = payload.strategy || "--";
   lastCloseText.textContent = formatPrice(payload.last_close || payload.order?.price);
   modeText.textContent = `${snapshot.mode || "--"} / ${execute}`;
-  updatedAtText.textContent = `更新 ${formatDate(snapshot.published_at)}`;
+  updatedAtText.textContent = formatDate(snapshot.published_at);
+  sourceText.textContent = snapshot.source || "--";
+
+  setFlow(payload, snapshot, reason, signal);
 
   const rows = [
     [formatDate(snapshot.published_at), `決策：${action}`],
@@ -84,9 +114,11 @@ async function loadDashboard() {
     const snapshot = await response.json();
     renderSnapshot(snapshot);
   } catch (error) {
-    statusText.textContent = "尚無資料";
+    signalValue.textContent = "WAIT";
+    actionValue.textContent = "data pending";
+    reasonText.textContent = `讀取 data/latest.json 失敗：${error.message}`;
     updatedAtText.textContent = "讀取失敗";
-    setRows([["error", `讀取 data/latest.json 失敗：${error.message}`], ...fallbackRows]);
+    setRows([["error", error.message]]);
   } finally {
     refreshButton.disabled = false;
     refreshButton.textContent = "刷新";
