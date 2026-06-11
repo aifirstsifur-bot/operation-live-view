@@ -13,7 +13,10 @@
           <p class="eyebrow">OKX Paper Runner</p>
           <h1>自動交易監控</h1>
         </div>
-        <button id="refreshButton" class="primary-button">刷新</button>
+        <div class="refresh-controls">
+          <span id="refreshStatus" class="refresh-status">自動更新啟動中</span>
+          <button id="refreshButton" class="primary-button">立即刷新</button>
+        </div>
       </section>
 
       <section class="visual-grid">
@@ -116,7 +119,7 @@
         <div class="panel detail-panel">
           <div class="panel-heading">
             <p class="panel-label">最新紀錄</p>
-            <span class="updated-at">auto refresh 60s</span>
+            <span id="autoRefreshText" class="updated-at">auto refresh 30s</span>
           </div>
           <ol id="logList" class="log-list">
             <li class="log-item">
@@ -136,6 +139,6 @@
       </section>
     </main>
 
-    <script src="./script.js?v=20260612-0712"></script>
+    <script src="./script.js?v=20260612-0735"></script>
   </body>
 </html>

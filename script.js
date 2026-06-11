@@ -11,6 +11,8 @@ const lastCloseText = document.querySelector("#lastClose");
 const modeText = document.querySelector("#mode");
 const updatedAtText = document.querySelector("#updatedAt");
 const sourceText = document.querySelector("#sourceText");
+const refreshStatus = document.querySelector("#refreshStatus");
+const autoRefreshText = document.querySelector("#autoRefreshText");
 const chartMeta = document.querySelector("#chartMeta");
 const gridLayer = document.querySelector("#gridLayer");
 const axisLayer = document.querySelector("#axisLayer");
@@ -18,6 +20,9 @@ const priceLine = document.querySelector("#priceLine");
 const markerLayer = document.querySelector("#markerLayer");
 const priceLabelLayer = document.querySelector("#priceLabelLayer");
 const emptyMarkers = document.querySelector("#emptyMarkers");
+const REFRESH_SECONDS = 30;
+let nextRefreshAt = Date.now() + REFRESH_SECONDS * 1000;
+let loading = false;
 
 function formatDate(value) {
   if (!value) return "--";
@@ -234,35 +239,53 @@ function renderChart(chart) {
 }
 
 async function loadDashboard() {
+  if (loading) return;
+  loading = true;
   refreshButton.disabled = true;
   refreshButton.textContent = "讀取中";
+  refreshStatus.textContent = "同步資料中...";
+  const cacheKey = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
   try {
-    const response = await fetch(`./data/latest.json?t=${Date.now()}`, {
+    const response = await fetch(`./data/latest.json?t=${cacheKey}`, {
       cache: "no-store",
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const snapshot = await response.json();
     renderSnapshot(snapshot);
 
-    const chartResponse = await fetch(`./data/chart.json?t=${Date.now()}`, {
+    const chartResponse = await fetch(`./data/chart.json?t=${cacheKey}`, {
       cache: "no-store",
     });
     if (chartResponse.ok) {
       renderChart(await chartResponse.json());
     }
+    const currentTime = formatDate(new Date().toISOString());
+    refreshStatus.textContent = `已同步 ${currentTime}`;
   } catch (error) {
     signalValue.textContent = "WAIT";
     actionValue.textContent = "data pending";
     reasonText.textContent = `讀取 data/latest.json 失敗：${error.message}`;
     updatedAtText.textContent = "讀取失敗";
     setRows([["error", error.message]]);
+    refreshStatus.textContent = "同步失敗，30 秒後重試";
   } finally {
     refreshButton.disabled = false;
-    refreshButton.textContent = "刷新";
+    refreshButton.textContent = "立即刷新";
+    nextRefreshAt = Date.now() + REFRESH_SECONDS * 1000;
+    loading = false;
   }
 }
 
-refreshButton.addEventListener("click", loadDashboard);
+function updateRefreshCountdown() {
+  const remaining = Math.max(0, Math.ceil((nextRefreshAt - Date.now()) / 1000));
+  autoRefreshText.textContent = `auto refresh ${remaining}s`;
+  if (remaining === 0) loadDashboard();
+}
+
+refreshButton.addEventListener("click", () => {
+  nextRefreshAt = Date.now();
+  loadDashboard();
+});
 loadDashboard();
-window.setInterval(loadDashboard, 60_000);
+window.setInterval(updateRefreshCountdown, 1000);

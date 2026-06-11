@@ -74,6 +74,20 @@ h1 {
   font-weight: 850;
 }
 
+.refresh-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.refresh-status {
+  min-width: 142px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
 .primary-button:disabled {
   cursor: not-allowed;
   opacity: 0.58;
@@ -455,6 +469,16 @@ h1 {
 
   .primary-button {
     width: 100%;
+  }
+
+  .refresh-controls {
+    align-items: stretch;
+    display: grid;
+  }
+
+  .refresh-status {
+    min-width: 0;
+    text-align: left;
   }
 
   .visual-grid,
