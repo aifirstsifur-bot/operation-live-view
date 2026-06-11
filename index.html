@@ -54,6 +54,26 @@
           </div>
         </div>
 
+        <div class="panel chart-panel">
+          <div class="panel-heading">
+            <p class="panel-label">價格與買賣點</p>
+            <span id="chartMeta" class="updated-at">BTC-USDT 1H</span>
+          </div>
+          <div class="chart-wrap">
+            <svg id="priceChart" class="price-chart" viewBox="0 0 720 280" role="img" aria-label="price chart with trade markers">
+              <g id="gridLayer"></g>
+              <path id="priceLine" class="price-line" d=""></path>
+              <g id="markerLayer"></g>
+            </svg>
+            <div id="emptyMarkers" class="empty-markers">尚無買賣點</div>
+          </div>
+          <div class="legend-row">
+            <span><i class="legend-dot buy-dot"></i>買點</span>
+            <span><i class="legend-dot sell-dot"></i>賣點</span>
+            <span><i class="legend-line"></i>價格</span>
+          </div>
+        </div>
+
         <div class="panel flow-panel">
           <div class="panel-heading">
             <p class="panel-label">決策流程</p>
@@ -114,6 +134,6 @@
       </section>
     </main>
 
-    <script src="./script.js?v=20260612-0608"></script>
+    <script src="./script.js?v=20260612-0612"></script>
   </body>
 </html>

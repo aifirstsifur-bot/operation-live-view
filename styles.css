@@ -211,6 +211,112 @@ h1 {
   overflow-wrap: anywhere;
 }
 
+.chart-panel {
+  grid-column: 1 / -1;
+  min-height: 390px;
+}
+
+.chart-wrap {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(106, 167, 255, 0.08), transparent 55%),
+    rgba(255, 255, 255, 0.035);
+}
+
+.price-chart {
+  display: block;
+  width: 100%;
+  height: 300px;
+}
+
+.grid-line {
+  stroke: rgba(255, 255, 255, 0.09);
+  stroke-width: 1;
+}
+
+.price-line {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 9px rgba(106, 167, 255, 0.35));
+}
+
+.marker {
+  stroke: #11151b;
+  stroke-width: 3;
+}
+
+.marker.buy {
+  fill: var(--green);
+}
+
+.marker.sell {
+  fill: var(--red);
+}
+
+.marker-label {
+  fill: #f4f7fb;
+  font-size: 12px;
+  font-weight: 850;
+  paint-order: stroke;
+  stroke: #11151b;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.empty-markers {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legend-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legend-dot {
+  width: 10px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.buy-dot {
+  background: var(--green);
+}
+
+.sell-dot {
+  background: var(--red);
+}
+
+.legend-line {
+  width: 24px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--blue);
+}
+
 .flow-panel,
 .detail-panel {
   min-height: 300px;
