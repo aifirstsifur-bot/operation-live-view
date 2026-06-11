@@ -212,8 +212,9 @@ function renderChart(chart) {
     const point = pointFor(marker.ts, marker.price);
     const side = marker.side === "sell" ? "sell" : "buy";
 
+    const source = marker.source === "backtest" ? "backtest" : "live";
     const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("class", `marker ${side}`);
+    circle.setAttribute("class", `marker ${side} ${source}`);
     circle.setAttribute("cx", point.x);
     circle.setAttribute("cy", point.y);
     circle.setAttribute("r", 7);
@@ -223,7 +224,8 @@ function renderChart(chart) {
     label.setAttribute("class", "marker-label");
     label.setAttribute("x", point.x + 10);
     label.setAttribute("y", point.y - 9);
-    label.textContent = `${side === "sell" ? "SELL" : "BUY"} ${formatPrice(marker.price)}`;
+    const prefix = source === "backtest" ? "BT " : "";
+    label.textContent = `${prefix}${side === "sell" ? "SELL" : "BUY"} ${formatPrice(marker.price)}`;
     markerLayer.append(label);
     visibleMarkers += 1;
   }

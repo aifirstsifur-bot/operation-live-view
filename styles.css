@@ -266,6 +266,11 @@ h1 {
   fill: var(--red);
 }
 
+.marker.backtest {
+  stroke-dasharray: 2 2;
+  opacity: 0.82;
+}
+
 .marker-label {
   fill: #f4f7fb;
   font-size: 12px;
