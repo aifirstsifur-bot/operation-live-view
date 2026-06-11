@@ -22,23 +22,23 @@
       <section class="dashboard">
         <div class="panel status-panel">
           <p class="panel-label">目前狀態</p>
-          <div id="status" class="status">等待開始</div>
+          <div id="status" class="status">HOLD / HOLD</div>
           <dl class="metric-list">
             <div>
               <dt>標的</dt>
-              <dd id="instrument">--</dd>
+              <dd id="instrument">BTC-USDT</dd>
             </div>
             <div>
               <dt>策略</dt>
-              <dd id="strategy">--</dd>
+              <dd id="strategy">trend-long-short</dd>
             </div>
             <div>
               <dt>最新價格</dt>
-              <dd id="lastClose">--</dd>
+              <dd id="lastClose">63,463.3</dd>
             </div>
             <div>
               <dt>模式</dt>
-              <dd id="mode">--</dd>
+              <dd id="mode">paper / execute=false</dd>
             </div>
           </dl>
         </div>
@@ -46,18 +46,26 @@
         <div class="panel log-panel">
           <div class="panel-heading">
             <p class="panel-label">最新決策</p>
-            <span id="updatedAt" class="updated-at">--</span>
+            <span id="updatedAt" class="updated-at">更新 06/12 05:56:25</span>
           </div>
           <ol id="logList" class="log-list">
             <li class="log-item">
-              <span class="log-time">--</span>
-              <span class="log-message">等待資料發布</span>
+              <span class="log-time">06/12 05:56:25</span>
+              <span class="log-message">決策：hold</span>
+            </li>
+            <li class="log-item">
+              <span class="log-time">signal</span>
+              <span class="log-message">訊號：hold</span>
+            </li>
+            <li class="log-item">
+              <span class="log-time">reason</span>
+              <span class="log-message">原因：no trend cross</span>
             </li>
           </ol>
         </div>
       </section>
     </main>
 
-    <script src="./script.js"></script>
+    <script src="./script.js?v=20260612-0601"></script>
   </body>
 </html>
