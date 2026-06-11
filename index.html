@@ -10,30 +10,50 @@
     <main class="app">
       <section class="hero">
         <div>
-          <p class="eyebrow">Live Operation</p>
-          <h1>操作過程展示</h1>
+          <p class="eyebrow">Trading Monitor</p>
+          <h1>自動交易監控</h1>
           <p class="summary">
-            把系統正在做的每個步驟，用時間軸即時顯示在網頁上。
+            顯示 OKX paper 自動交易 runner 的最新決策、訊號與執行紀錄。
           </p>
         </div>
-        <button id="runButton" class="primary-button">開始示範</button>
+        <button id="refreshButton" class="primary-button">刷新</button>
       </section>
 
       <section class="dashboard">
         <div class="panel status-panel">
           <p class="panel-label">目前狀態</p>
           <div id="status" class="status">等待開始</div>
-          <div class="progress-track">
-            <div id="progress" class="progress-bar"></div>
-          </div>
+          <dl class="metric-list">
+            <div>
+              <dt>標的</dt>
+              <dd id="instrument">--</dd>
+            </div>
+            <div>
+              <dt>策略</dt>
+              <dd id="strategy">--</dd>
+            </div>
+            <div>
+              <dt>最新價格</dt>
+              <dd id="lastClose">--</dd>
+            </div>
+            <div>
+              <dt>模式</dt>
+              <dd id="mode">--</dd>
+            </div>
+          </dl>
         </div>
 
         <div class="panel log-panel">
           <div class="panel-heading">
-            <p class="panel-label">操作紀錄</p>
-            <button id="clearButton" class="ghost-button">清除</button>
+            <p class="panel-label">最新決策</p>
+            <span id="updatedAt" class="updated-at">--</span>
           </div>
-          <ol id="logList" class="log-list"></ol>
+          <ol id="logList" class="log-list">
+            <li class="log-item">
+              <span class="log-time">--</span>
+              <span class="log-message">等待資料發布</span>
+            </li>
+          </ol>
         </div>
       </section>
     </main>
