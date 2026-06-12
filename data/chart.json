@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-12T07:55:04Z",
+  "generated_at": "2026-06-12T08:00:07Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1780171200000,
-      "open": 74012.7,
-      "high": 74022.1,
-      "low": 73919.0,
-      "close": 73978.3
-    },
     {
       "ts": 1780174800000,
       "open": 73978.3,
@@ -2099,9 +2092,16 @@
     {
       "ts": 1781247600000,
       "open": 62989.2,
-      "high": 63130.0,
+      "high": 63219.1,
       "low": 62957.5,
-      "close": 63014.1
+      "close": 63104.0
+    },
+    {
+      "ts": 1781251200000,
+      "open": 63104.6,
+      "high": 63110.1,
+      "low": 63100.0,
+      "close": 63100.0
     }
   ],
   "markers": [
@@ -2116,7 +2116,7 @@
     },
     {
       "ts": 1780527600000,
-      "price": 64240.99162999424,
+      "price": 64240.93797198335,
       "side": "buy",
       "action": "exit",
       "reason": "take_profit",
@@ -2152,7 +2152,7 @@
     },
     {
       "ts": 1780668000000,
-      "price": 60360.429368966354,
+      "price": 60360.4250502435,
       "side": "buy",
       "action": "exit",
       "reason": "take_profit",
@@ -2216,17 +2216,17 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 10081.2743322468,
-      "total_return_pct": 0.8127433224679903,
-      "max_drawdown_pct": 0.6770249900167647,
+      "ending_cash": 10081.274537073165,
+      "total_return_pct": 0.8127453707316379,
+      "max_drawdown_pct": 0.6770249405340162,
       "trades": 5,
       "win_rate_pct": 60.0,
-      "profit_factor": 2.3302262920354853,
-      "avg_trade_pnl": 16.254866449359856,
-      "worst_trade_pnl": -31.01431698206293,
-      "best_trade_pnl": 70.4317930181485,
+      "profit_factor": 2.3302297052793706,
+      "avg_trade_pnl": 16.254907414632925,
+      "worst_trade_pnl": -31.014317610121655,
+      "best_trade_pnl": 70.43180430431464,
       "consecutive_losses": 2,
-      "total_fees": 23.481509124555192,
+      "total_fees": 23.481331645553965,
       "total_funding_cost": 0.0
     }
   },
