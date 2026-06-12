@@ -230,6 +230,48 @@ h1 {
   min-height: 390px;
 }
 
+.performance-panel {
+  grid-column: 1 / -1;
+}
+
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.performance-card {
+  min-height: 112px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.052);
+}
+
+.performance-card p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.performance-card strong {
+  display: block;
+  color: var(--text);
+  font-size: clamp(20px, 2.6vw, 30px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.performance-card.positive strong {
+  color: var(--green);
+}
+
+.performance-card.negative strong {
+  color: var(--red);
+}
+
 .chart-wrap {
   position: relative;
   min-height: 300px;
@@ -484,6 +526,10 @@ h1 {
   .visual-grid,
   .metric-grid {
     grid-template-columns: 1fr;
+  }
+
+  .performance-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .signal-panel {

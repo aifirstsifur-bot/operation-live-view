@@ -14,6 +14,8 @@ const sourceText = document.querySelector("#sourceText");
 const refreshStatus = document.querySelector("#refreshStatus");
 const autoRefreshText = document.querySelector("#autoRefreshText");
 const chartMeta = document.querySelector("#chartMeta");
+const performanceMeta = document.querySelector("#performanceMeta");
+const performanceGrid = document.querySelector("#performanceGrid");
 const gridLayer = document.querySelector("#gridLayer");
 const axisLayer = document.querySelector("#axisLayer");
 const priceLine = document.querySelector("#priceLine");
@@ -43,6 +45,18 @@ function formatPrice(value) {
   if (value === null || value === undefined) return "--";
   return Number(value).toLocaleString("en-US", {
     maximumFractionDigits: 2,
+  });
+}
+
+function formatPercent(value) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) return "--";
+  return `${Number(value).toFixed(2)}%`;
+}
+
+function formatNumber(value, digits = 2) {
+  if (value === null || value === undefined || Number.isNaN(Number(value))) return "--";
+  return Number(value).toLocaleString("en-US", {
+    maximumFractionDigits: digits,
   });
 }
 
@@ -239,6 +253,33 @@ function renderChart(chart) {
   emptyMarkers.textContent = visibleMarkers ? `${visibleMarkers} 個買賣點` : "尚無買賣點";
 }
 
+function renderBacktest(chart) {
+  const backtest = chart.backtest || {};
+  const report = backtest.report || {};
+  performanceMeta.textContent = `${backtest.strategy || "--"} / ${backtest.window_candles || 0} candles`;
+
+  const rows = [
+    ["總報酬", formatPercent(report.total_return_pct), report.total_return_pct],
+    ["最大回撤", formatPercent(report.max_drawdown_pct), -report.max_drawdown_pct],
+    ["交易數", formatNumber(report.trades, 0), null],
+    ["勝率", formatPercent(report.win_rate_pct), report.win_rate_pct - 50],
+    ["Profit Factor", formatNumber(report.profit_factor), report.profit_factor - 1],
+    ["平均 PnL", formatNumber(report.avg_trade_pnl), report.avg_trade_pnl],
+  ];
+
+  performanceGrid.replaceChildren();
+  for (const [label, value, score] of rows) {
+    const item = document.createElement("div");
+    const tone = score === null ? "neutral" : score >= 0 ? "positive" : "negative";
+    item.className = `performance-card ${tone}`;
+    item.innerHTML = `
+      <p>${label}</p>
+      <strong>${value}</strong>
+    `;
+    performanceGrid.append(item);
+  }
+}
+
 async function loadDashboard() {
   if (loading) return;
   loading = true;
@@ -259,7 +300,9 @@ async function loadDashboard() {
       cache: "no-store",
     });
     if (chartResponse.ok) {
-      renderChart(await chartResponse.json());
+      const chart = await chartResponse.json();
+      renderChart(chart);
+      renderBacktest(chart);
     }
     const currentTime = formatDate(new Date().toISOString());
     refreshStatus.textContent = `已同步 ${currentTime}`;
