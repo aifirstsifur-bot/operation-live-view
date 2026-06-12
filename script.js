@@ -191,17 +191,17 @@ function drawLatestPrice(point, price, width) {
 
 function markerShape(side, point) {
   if (side === "sell") {
-    return `${point.x},${point.y + 9} ${point.x - 9},${point.y - 7} ${point.x + 9},${point.y - 7}`;
+    return `${point.x},${point.y + 12} ${point.x - 12},${point.y - 10} ${point.x + 12},${point.y - 10}`;
   }
-  return `${point.x},${point.y - 9} ${point.x - 9},${point.y + 7} ${point.x + 9},${point.y + 7}`;
+  return `${point.x},${point.y - 12} ${point.x - 12},${point.y + 10} ${point.x + 12},${point.y + 10}`;
 }
 
 function renderChart(chart) {
   const candles = chart.candles || [];
   const markers = chart.markers || [];
   const width = 720;
-  const height = 280;
-  const pad = 32;
+  const height = 340;
+  const pad = 40;
 
   chartMeta.textContent = `${chart.instId || "--"} ${chart.bar || ""}`;
   markerLayer.replaceChildren();
@@ -249,6 +249,7 @@ function renderChart(chart) {
     const side = marker.side === "sell" ? "sell" : "buy";
 
     const source = marker.source === "backtest" ? "backtest" : "live";
+    const markerNumber = visibleMarkers + 1;
     const stem = document.createElementNS("http://www.w3.org/2000/svg", "line");
     stem.setAttribute("class", `marker-stem ${side}`);
     stem.setAttribute("x1", point.x);
@@ -265,14 +266,14 @@ function renderChart(chart) {
     shape.append(title);
     markerLayer.append(shape);
 
-    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    label.setAttribute("class", "marker-label");
-    label.setAttribute("x", Math.min(point.x + 11, width - 120));
-    label.setAttribute("y", side === "sell" ? Math.max(18, point.y - 15) : Math.min(height - 10, point.y + 24));
-    const prefix = source === "backtest" ? "BT " : "";
-    label.textContent = `${prefix}${side === "sell" ? "S" : "B"} ${formatPrice(marker.price)}`;
-    markerLayer.append(label);
-    markerRows.push({ ...marker, side, source });
+    const number = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    number.setAttribute("class", "marker-number");
+    number.setAttribute("x", point.x);
+    number.setAttribute("y", side === "sell" ? point.y - 12 : point.y + 20);
+    number.setAttribute("text-anchor", "middle");
+    number.textContent = markerNumber;
+    markerLayer.append(number);
+    markerRows.push({ ...marker, side, source, markerNumber });
     visibleMarkers += 1;
   }
 
@@ -281,8 +282,8 @@ function renderChart(chart) {
     const item = document.createElement("div");
     item.className = `marker-row ${marker.side}`;
     item.innerHTML = `
-      <strong>${marker.source === "backtest" ? "BT" : "LIVE"} ${marker.side.toUpperCase()}</strong>
-      <span>${formatPrice(marker.price)}</span>
+      <strong>#${marker.markerNumber} ${marker.source === "backtest" ? "BT" : "LIVE"} ${marker.side.toUpperCase()}</strong>
+      <span class="marker-price">${formatPrice(marker.price)}</span>
       <span>${formatDate(marker.ts)}</span>
       <span>${marker.reason || marker.action || ""}</span>
     `;
