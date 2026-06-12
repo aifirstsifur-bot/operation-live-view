@@ -16,6 +16,8 @@ const autoRefreshText = document.querySelector("#autoRefreshText");
 const chartMeta = document.querySelector("#chartMeta");
 const performanceMeta = document.querySelector("#performanceMeta");
 const performanceGrid = document.querySelector("#performanceGrid");
+const validationMeta = document.querySelector("#validationMeta");
+const validationGrid = document.querySelector("#validationGrid");
 const gridLayer = document.querySelector("#gridLayer");
 const axisLayer = document.querySelector("#axisLayer");
 const priceLine = document.querySelector("#priceLine");
@@ -280,6 +282,36 @@ function renderBacktest(chart) {
   }
 }
 
+function renderValidation(chart) {
+  const validation = chart.validation || {};
+  validationMeta.textContent = validation.error
+    ? "validation unavailable"
+    : `${validation.train_size || 0}/${validation.test_size || 0} candles, ${validation.source || "--"}`;
+
+  const verdictReady = validation.verdict === "ready";
+  const verdictText = validation.error ? "ERROR" : verdictReady ? "READY" : "NOT READY";
+  const rows = [
+    ["結論", verdictText, verdictReady ? 1 : -1],
+    ["通過率", formatPercent(validation.pass_rate_pct), (validation.pass_rate_pct || 0) - 50],
+    ["測試窗", `${validation.passed_windows || 0}/${validation.windows || 0}`, null],
+    ["平均測試報酬", formatPercent(validation.avg_test_return_pct), validation.avg_test_return_pct],
+    ["最差測試報酬", formatPercent(validation.worst_test_return_pct), validation.worst_test_return_pct],
+    ["平均測試交易", formatNumber(validation.avg_test_trades), (validation.avg_test_trades || 0) - (validation.min_trades || 0)],
+  ];
+
+  validationGrid.replaceChildren();
+  for (const [label, value, score] of rows) {
+    const item = document.createElement("div");
+    const tone = score === null ? "neutral" : score >= 0 ? "positive" : "negative";
+    item.className = `performance-card ${tone}`;
+    item.innerHTML = `
+      <p>${label}</p>
+      <strong>${value}</strong>
+    `;
+    validationGrid.append(item);
+  }
+}
+
 async function loadDashboard() {
   if (loading) return;
   loading = true;
@@ -303,6 +335,7 @@ async function loadDashboard() {
       const chart = await chartResponse.json();
       renderChart(chart);
       renderBacktest(chart);
+      renderValidation(chart);
     }
     const currentTime = formatDate(new Date().toISOString());
     refreshStatus.textContent = `已同步 ${currentTime}`;

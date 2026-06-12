@@ -230,7 +230,8 @@ h1 {
   min-height: 390px;
 }
 
-.performance-panel {
+.performance-panel,
+.validation-panel {
   grid-column: 1 / -1;
 }
 
