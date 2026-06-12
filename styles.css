@@ -382,7 +382,7 @@ h1 {
 
 .marker {
   stroke: #11151b;
-  stroke-width: 3;
+  stroke-width: 2.5;
 }
 
 .marker.buy {
@@ -394,8 +394,21 @@ h1 {
 }
 
 .marker.backtest {
-  stroke-dasharray: 2 2;
-  opacity: 0.82;
+  opacity: 0.9;
+}
+
+.marker-stem {
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+  opacity: 0.65;
+}
+
+.marker-stem.buy {
+  stroke: var(--green);
+}
+
+.marker-stem.sell {
+  stroke: var(--red);
 }
 
 .marker-label {
@@ -406,6 +419,39 @@ h1 {
   stroke: #11151b;
   stroke-width: 3px;
   stroke-linejoin: round;
+}
+
+.marker-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.marker-row {
+  display: grid;
+  grid-template-columns: 96px 104px 118px 1fr;
+  gap: 10px;
+  align-items: center;
+  min-height: 38px;
+  padding: 9px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.048);
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.marker-row strong {
+  color: var(--text);
+}
+
+.marker-row.buy strong {
+  color: var(--green);
+}
+
+.marker-row.sell strong {
+  color: var(--red);
 }
 
 .latest-price-pill {
@@ -613,5 +659,9 @@ h1 {
 
   .log-item {
     grid-template-columns: 78px 1fr;
+  }
+
+  .marker-row {
+    grid-template-columns: 82px 1fr;
   }
 }

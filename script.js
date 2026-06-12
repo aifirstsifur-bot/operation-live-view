@@ -28,6 +28,7 @@ const priceLine = document.querySelector("#priceLine");
 const markerLayer = document.querySelector("#markerLayer");
 const priceLabelLayer = document.querySelector("#priceLabelLayer");
 const emptyMarkers = document.querySelector("#emptyMarkers");
+const markerList = document.querySelector("#markerList");
 const REFRESH_SECONDS = 30;
 const DATA_BASE_URL = "https://raw.githubusercontent.com/aifirstsifur-bot/operation-live-view/main/data";
 let nextRefreshAt = Date.now() + REFRESH_SECONDS * 1000;
@@ -188,6 +189,13 @@ function drawLatestPrice(point, price, width) {
   priceLabelLayer.append(text);
 }
 
+function markerShape(side, point) {
+  if (side === "sell") {
+    return `${point.x},${point.y + 9} ${point.x - 9},${point.y - 7} ${point.x + 9},${point.y - 7}`;
+  }
+  return `${point.x},${point.y - 9} ${point.x - 9},${point.y + 7} ${point.x + 9},${point.y + 7}`;
+}
+
 function renderChart(chart) {
   const candles = chart.candles || [];
   const markers = chart.markers || [];
@@ -198,6 +206,7 @@ function renderChart(chart) {
   chartMeta.textContent = `${chart.instId || "--"} ${chart.bar || ""}`;
   markerLayer.replaceChildren();
   priceLabelLayer.replaceChildren();
+  markerList.replaceChildren();
 
   if (candles.length < 2) {
     priceLine.setAttribute("d", "");
@@ -233,30 +242,52 @@ function renderChart(chart) {
   drawLatestPrice(pointFor(latest.ts, latest.close), latest.close, width);
 
   let visibleMarkers = 0;
+  const markerRows = [];
   for (const marker of markers) {
     if (!marker.ts || !marker.price || marker.ts < minTs || marker.ts > maxTs) continue;
     const point = pointFor(marker.ts, marker.price);
     const side = marker.side === "sell" ? "sell" : "buy";
 
     const source = marker.source === "backtest" ? "backtest" : "live";
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("class", `marker ${side} ${source}`);
-    circle.setAttribute("cx", point.x);
-    circle.setAttribute("cy", point.y);
-    circle.setAttribute("r", 7);
-    markerLayer.append(circle);
+    const stem = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    stem.setAttribute("class", `marker-stem ${side}`);
+    stem.setAttribute("x1", point.x);
+    stem.setAttribute("x2", point.x);
+    stem.setAttribute("y1", point.y);
+    stem.setAttribute("y2", side === "sell" ? Math.max(18, point.y - 24) : Math.min(height - 18, point.y + 24));
+    markerLayer.append(stem);
+
+    const shape = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    shape.setAttribute("class", `marker ${side} ${source}`);
+    shape.setAttribute("points", markerShape(side, point));
+    const title = document.createElementNS("http://www.w3.org/2000/svg", "title");
+    title.textContent = `${source.toUpperCase()} ${side.toUpperCase()} ${formatPrice(marker.price)} ${formatDate(marker.ts)}`;
+    shape.append(title);
+    markerLayer.append(shape);
 
     const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     label.setAttribute("class", "marker-label");
-    label.setAttribute("x", point.x + 10);
-    label.setAttribute("y", point.y - 9);
+    label.setAttribute("x", Math.min(point.x + 11, width - 120));
+    label.setAttribute("y", side === "sell" ? Math.max(18, point.y - 15) : Math.min(height - 10, point.y + 24));
     const prefix = source === "backtest" ? "BT " : "";
-    label.textContent = `${prefix}${side === "sell" ? "SELL" : "BUY"} ${formatPrice(marker.price)}`;
+    label.textContent = `${prefix}${side === "sell" ? "S" : "B"} ${formatPrice(marker.price)}`;
     markerLayer.append(label);
+    markerRows.push({ ...marker, side, source });
     visibleMarkers += 1;
   }
 
   emptyMarkers.textContent = visibleMarkers ? `${visibleMarkers} 個買賣點` : "尚無買賣點";
+  for (const marker of markerRows.slice(-8).reverse()) {
+    const item = document.createElement("div");
+    item.className = `marker-row ${marker.side}`;
+    item.innerHTML = `
+      <strong>${marker.source === "backtest" ? "BT" : "LIVE"} ${marker.side.toUpperCase()}</strong>
+      <span>${formatPrice(marker.price)}</span>
+      <span>${formatDate(marker.ts)}</span>
+      <span>${marker.reason || marker.action || ""}</span>
+    `;
+    markerList.append(item);
+  }
 }
 
 function renderBacktest(chart) {
