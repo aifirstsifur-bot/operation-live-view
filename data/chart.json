@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T00:36:18Z",
+  "generated_at": "2026-06-12T00:41:20Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
@@ -2101,7 +2101,7 @@
       "open": 63628.0,
       "high": 63790.7,
       "low": 63520.1,
-      "close": 63651.4
+      "close": 63668.9
     }
   ],
   "markers": [
@@ -2196,5 +2196,227 @@
       "total_fees": 17.622799399994772,
       "total_funding_cost": 0.0
     }
+  },
+  "validation": {
+    "strategy": "trend-long-short",
+    "source": "BTC-USDT_1H_2000.csv",
+    "train_size": 800,
+    "test_size": 200,
+    "step_size": 200,
+    "min_trades": 3,
+    "windows": 6,
+    "passed_windows": 0,
+    "pass_rate_pct": 0.0,
+    "avg_test_return_pct": 0.11414843565187849,
+    "worst_test_return_pct": -0.29659314729296726,
+    "best_test_return_pct": 1.1754837864532242,
+    "avg_test_trades": 0.6666666666666666,
+    "verdict": "not_ready",
+    "windows_detail": [
+      {
+        "window": 1,
+        "train_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10081.197729545022,
+          "total_return_pct": 0.8119772954502169,
+          "max_drawdown_pct": 0.8645246495742019,
+          "trades": 4,
+          "win_rate_pct": 50.0,
+          "profit_factor": 2.633874714999533,
+          "avg_trade_pnl": 20.29943238625551,
+          "worst_trade_pnl": -30.13791705821602,
+          "best_trade_pnl": 66.91455493020683,
+          "consecutive_losses": 2,
+          "total_fees": 30.44066644573423,
+          "total_funding_cost": 0.0
+        },
+        "test_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10000.0,
+          "total_return_pct": 0.0,
+          "max_drawdown_pct": 0.0,
+          "trades": 0,
+          "win_rate_pct": 0,
+          "profit_factor": 0,
+          "avg_trade_pnl": 0,
+          "worst_trade_pnl": 0,
+          "best_trade_pnl": 0,
+          "consecutive_losses": 0,
+          "total_fees": 0,
+          "total_funding_cost": 0
+        },
+        "test_pass": false
+      },
+      {
+        "window": 2,
+        "train_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10064.747564611416,
+          "total_return_pct": 0.6474756461141595,
+          "max_drawdown_pct": 0.8645246495760489,
+          "trades": 5,
+          "win_rate_pct": 40.0,
+          "profit_factor": 1.978849647236207,
+          "avg_trade_pnl": 12.949512922283276,
+          "worst_trade_pnl": -30.137917058214573,
+          "best_trade_pnl": 66.91455493020362,
+          "consecutive_losses": 2,
+          "total_fees": 38.04394535758763,
+          "total_funding_cost": 0.0
+        },
+        "test_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10117.548378645322,
+          "total_return_pct": 1.1754837864532242,
+          "max_drawdown_pct": 0.16333800402939674,
+          "trades": 2,
+          "win_rate_pct": 100.0,
+          "profit_factor": 0,
+          "avg_trade_pnl": 58.774189322661,
+          "worst_trade_pnl": 54.410052195142654,
+          "best_trade_pnl": 63.13832645017935,
+          "consecutive_losses": 0,
+          "total_fees": 16.49810162870735,
+          "total_funding_cost": 0.0
+        },
+        "test_pass": false
+      },
+      {
+        "window": 3,
+        "train_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10183.056716172243,
+          "total_return_pct": 1.8305671617224295,
+          "max_drawdown_pct": 0.8645252967654733,
+          "trades": 7,
+          "win_rate_pct": 57.14285714285714,
+          "profit_factor": 3.767438784047455,
+          "avg_trade_pnl": 26.150959453177393,
+          "worst_trade_pnl": -30.137916554365823,
+          "best_trade_pnl": 66.91455380177824,
+          "consecutive_losses": 2,
+          "total_fees": 54.64896850076458,
+          "total_funding_cost": 0.0
+        },
+        "test_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10000.0,
+          "total_return_pct": 0.0,
+          "max_drawdown_pct": 0.0,
+          "trades": 0,
+          "win_rate_pct": 0,
+          "profit_factor": 0,
+          "avg_trade_pnl": 0,
+          "worst_trade_pnl": 0,
+          "best_trade_pnl": 0,
+          "consecutive_losses": 0,
+          "total_fees": 0,
+          "total_funding_cost": 0
+        },
+        "test_pass": false
+      },
+      {
+        "window": 4,
+        "train_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10168.536289078093,
+          "total_return_pct": 1.685362890780917,
+          "max_drawdown_pct": 0.498602349363128,
+          "trades": 4,
+          "win_rate_pct": 75.0,
+          "profit_factor": 11.259894580532855,
+          "avg_trade_pnl": 42.13407226952273,
+          "worst_trade_pnl": -16.42670767766679,
+          "best_trade_pnl": 66.82237747235706,
+          "consecutive_losses": 1,
+          "total_fees": 30.700427763245386,
+          "total_funding_cost": 0.0
+        },
+        "test_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10000.0,
+          "total_return_pct": 0.0,
+          "max_drawdown_pct": 0.0,
+          "trades": 0,
+          "win_rate_pct": 0,
+          "profit_factor": 0,
+          "avg_trade_pnl": 0,
+          "worst_trade_pnl": 0,
+          "best_trade_pnl": 0,
+          "consecutive_losses": 0,
+          "total_fees": 0,
+          "total_funding_cost": 0
+        },
+        "test_pass": false
+      },
+      {
+        "window": 5,
+        "train_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10085.125508610765,
+          "total_return_pct": 0.8512550861076384,
+          "max_drawdown_pct": 0.3834207437466847,
+          "trades": 3,
+          "win_rate_pct": 66.66666666666666,
+          "profit_factor": 3.625489549533594,
+          "avg_trade_pnl": 28.375169536922083,
+          "worst_trade_pnl": -32.42271850820674,
+          "best_trade_pnl": 63.138328907500615,
+          "consecutive_losses": 1,
+          "total_fees": 25.536478957494722,
+          "total_funding_cost": 0.0
+        },
+        "test_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 9980.599997475101,
+          "total_return_pct": -0.19400002524898596,
+          "max_drawdown_pct": 0.24209896206709006,
+          "trades": 1,
+          "win_rate_pct": 0.0,
+          "profit_factor": 0.0,
+          "avg_trade_pnl": -19.400002524899364,
+          "worst_trade_pnl": -19.400002524899364,
+          "best_trade_pnl": -19.400002524899364,
+          "consecutive_losses": 1,
+          "total_fees": 9.017990892455432,
+          "total_funding_cost": 0.0
+        },
+        "test_pass": false
+      },
+      {
+        "window": 6,
+        "train_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10065.560756089322,
+          "total_return_pct": 0.6556075608932233,
+          "max_drawdown_pct": 0.5179306921411159,
+          "trades": 4,
+          "win_rate_pct": 50.0,
+          "profit_factor": 2.2610839439465122,
+          "avg_trade_pnl": 16.390189022330627,
+          "worst_trade_pnl": -32.422718993788436,
+          "best_trade_pnl": 63.13832645017935,
+          "consecutive_losses": 2,
+          "total_fees": 34.63114522488824,
+          "total_funding_cost": 0.0
+        },
+        "test_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 9970.340685270703,
+          "total_return_pct": -0.29659314729296726,
+          "max_drawdown_pct": 0.3714375162593585,
+          "trades": 1,
+          "win_rate_pct": 0.0,
+          "profit_factor": 0.0,
+          "avg_trade_pnl": -29.65931472929758,
+          "worst_trade_pnl": -29.65931472929758,
+          "best_trade_pnl": -29.65931472929758,
+          "consecutive_losses": 1,
+          "total_fees": 4.092410329816481,
+          "total_funding_cost": 0.0
+        },
+        "test_pass": false
+      }
+    ]
   }
 }
