@@ -21,6 +21,7 @@ const markerLayer = document.querySelector("#markerLayer");
 const priceLabelLayer = document.querySelector("#priceLabelLayer");
 const emptyMarkers = document.querySelector("#emptyMarkers");
 const REFRESH_SECONDS = 30;
+const DATA_BASE_URL = "https://raw.githubusercontent.com/aifirstsifur-bot/operation-live-view/main/data";
 let nextRefreshAt = Date.now() + REFRESH_SECONDS * 1000;
 let loading = false;
 
@@ -247,14 +248,14 @@ async function loadDashboard() {
   const cacheKey = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
   try {
-    const response = await fetch(`./data/latest.json?t=${cacheKey}`, {
+    const response = await fetch(`${DATA_BASE_URL}/latest.json?t=${cacheKey}`, {
       cache: "no-store",
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const snapshot = await response.json();
     renderSnapshot(snapshot);
 
-    const chartResponse = await fetch(`./data/chart.json?t=${cacheKey}`, {
+    const chartResponse = await fetch(`${DATA_BASE_URL}/chart.json?t=${cacheKey}`, {
       cache: "no-store",
     });
     if (chartResponse.ok) {
@@ -265,7 +266,7 @@ async function loadDashboard() {
   } catch (error) {
     signalValue.textContent = "WAIT";
     actionValue.textContent = "data pending";
-    reasonText.textContent = `讀取 data/latest.json 失敗：${error.message}`;
+    reasonText.textContent = `讀取最新交易資料失敗：${error.message}`;
     updatedAtText.textContent = "讀取失敗";
     setRows([["error", error.message]]);
     refreshStatus.textContent = "同步失敗，30 秒後重試";
