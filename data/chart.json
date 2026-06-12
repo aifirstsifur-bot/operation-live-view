@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T01:01:30Z",
+  "generated_at": "2026-06-12T01:04:27Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
@@ -2100,8 +2100,8 @@
       "ts": 1781226000000,
       "open": 63648.6,
       "high": 63648.6,
-      "low": 63541.0,
-      "close": 63544.1
+      "low": 63470.5,
+      "close": 63513.4
     }
   ],
   "markers": [
@@ -2449,6 +2449,136 @@
           "total_funding_cost": 0.0
         },
         "test_pass": true
+      }
+    ]
+  },
+  "optimization": {
+    "source": "optimization_trend_long_short_min1.json",
+    "candidates": 11664,
+    "min_trades": 1,
+    "top": [
+      {
+        "score": 1.3998128339574047,
+        "params": {
+          "fast_period": 8,
+          "slow_period": 20,
+          "trend_period": 60,
+          "atr_period": 14,
+          "min_atr_pct": 0.005,
+          "max_atr_pct": 0.04,
+          "min_slope_pct": 0.004,
+          "slope_period": 12,
+          "stop_atr": 2.0,
+          "take_profit_r": 1.5,
+          "min_hold_bars": 2,
+          "max_hold_bars": 12,
+          "cooldown_bars": 1
+        },
+        "full_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10258.343337717377,
+          "total_return_pct": 2.5834333771737716,
+          "max_drawdown_pct": 0.7864035701418649,
+          "trades": 12,
+          "win_rate_pct": 58.333333333333336,
+          "profit_factor": 3.550244870091133,
+          "avg_trade_pnl": 21.52861147644821,
+          "worst_trade_pnl": -30.51830601749454,
+          "best_trade_pnl": 71.44908665490553,
+          "consecutive_losses": 3,
+          "total_fees": 84.35694591788017,
+          "total_funding_cost": 0.0
+        },
+        "walk_forward": {
+          "pass_rate_pct": 50.0,
+          "passed_windows": 3,
+          "windows": 6,
+          "avg_test_return_pct": 0.1479852496559871,
+          "worst_test_return_pct": -0.19400002524898596,
+          "avg_test_trades": 1.0
+        }
+      },
+      {
+        "score": 1.3998128339574047,
+        "params": {
+          "fast_period": 8,
+          "slow_period": 20,
+          "trend_period": 60,
+          "atr_period": 14,
+          "min_atr_pct": 0.005,
+          "max_atr_pct": 0.04,
+          "min_slope_pct": 0.004,
+          "slope_period": 12,
+          "stop_atr": 2.0,
+          "take_profit_r": 1.5,
+          "min_hold_bars": 2,
+          "max_hold_bars": 12,
+          "cooldown_bars": 4
+        },
+        "full_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10258.343337717377,
+          "total_return_pct": 2.5834333771737716,
+          "max_drawdown_pct": 0.7864035701418649,
+          "trades": 12,
+          "win_rate_pct": 58.333333333333336,
+          "profit_factor": 3.550244870091133,
+          "avg_trade_pnl": 21.52861147644821,
+          "worst_trade_pnl": -30.51830601749454,
+          "best_trade_pnl": 71.44908665490553,
+          "consecutive_losses": 3,
+          "total_fees": 84.35694591788017,
+          "total_funding_cost": 0.0
+        },
+        "walk_forward": {
+          "pass_rate_pct": 50.0,
+          "passed_windows": 3,
+          "windows": 6,
+          "avg_test_return_pct": 0.1479852496559871,
+          "worst_test_return_pct": -0.19400002524898596,
+          "avg_test_trades": 1.0
+        }
+      },
+      {
+        "score": 1.3723338339000293,
+        "params": {
+          "fast_period": 12,
+          "slow_period": 40,
+          "trend_period": 120,
+          "atr_period": 14,
+          "min_atr_pct": 0.003,
+          "max_atr_pct": 0.03,
+          "min_slope_pct": 0.004,
+          "slope_period": 12,
+          "stop_atr": 2.0,
+          "take_profit_r": 2.0,
+          "min_hold_bars": 2,
+          "max_hold_bars": 24,
+          "cooldown_bars": 1
+        },
+        "full_report": {
+          "starting_cash": 10000.0,
+          "ending_cash": 10088.22394159601,
+          "total_return_pct": 0.8822394159601066,
+          "max_drawdown_pct": 0.4382930942496586,
+          "trades": 3,
+          "win_rate_pct": 66.66666666666666,
+          "profit_factor": 4.59173523679093,
+          "avg_trade_pnl": 29.407980532003837,
+          "worst_trade_pnl": -24.563041477087282,
+          "best_trade_pnl": 86.02342766589969,
+          "consecutive_losses": 1,
+          "total_fees": 29.18632319472679,
+          "total_funding_cost": 0.0
+        },
+        "walk_forward": {
+          "pass_rate_pct": 0.0,
+          "passed_windows": 0,
+          "windows": 6,
+          "avg_test_return_pct": -0.04048218206828732,
+          "worst_test_return_pct": -0.2428930924097239,
+          "avg_test_trades": 0.16666666666666666
+        }
       }
     ]
   }

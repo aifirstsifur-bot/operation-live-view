@@ -20,6 +20,8 @@ const validationMeta = document.querySelector("#validationMeta");
 const validationGrid = document.querySelector("#validationGrid");
 const paramsMeta = document.querySelector("#paramsMeta");
 const paramsGrid = document.querySelector("#paramsGrid");
+const optimizationMeta = document.querySelector("#optimizationMeta");
+const optimizationList = document.querySelector("#optimizationList");
 const gridLayer = document.querySelector("#gridLayer");
 const axisLayer = document.querySelector("#axisLayer");
 const priceLine = document.querySelector("#priceLine");
@@ -338,6 +340,49 @@ function renderParams(chart) {
   }
 }
 
+function shortParams(params) {
+  return [
+    `f/s ${params.fast_period || "--"}/${params.slow_period || "--"}`,
+    `trend ${params.trend_period || "--"}`,
+    `ATR ${formatNumber(params.min_atr_pct, 3)}-${formatNumber(params.max_atr_pct, 3)}`,
+    `take ${formatNumber(params.take_profit_r)}R`,
+    `hold ${params.min_hold_bars || "--"}-${params.max_hold_bars || "--"}`,
+  ].join(" · ");
+}
+
+function renderOptimization(chart) {
+  const optimization = chart.optimization || {};
+  const candidates = optimization.top || [];
+  optimizationMeta.textContent = `${optimization.candidates || 0} candidates / min trades ${optimization.min_trades || "--"}`;
+  optimizationList.replaceChildren();
+
+  if (!candidates.length) {
+    const empty = document.createElement("div");
+    empty.className = "candidate-card";
+    empty.innerHTML = "<strong>等待最佳候選</strong><p>optimizer pending</p>";
+    optimizationList.append(empty);
+    return;
+  }
+
+  candidates.forEach((candidate, index) => {
+    const full = candidate.full_report || {};
+    const walk = candidate.walk_forward || {};
+    const item = document.createElement("div");
+    item.className = "candidate-card";
+    item.innerHTML = `
+      <strong>#${index + 1} ${formatPercent(full.total_return_pct)} / WF ${formatPercent(walk.pass_rate_pct)}</strong>
+      <p>${shortParams(candidate.params || {})}</p>
+      <div class="candidate-metrics">
+        <span>DD ${formatPercent(full.max_drawdown_pct)}</span>
+        <span>trades ${formatNumber(full.trades, 0)}</span>
+        <span>PF ${formatNumber(full.profit_factor)}</span>
+        <span>avg test ${formatPercent(walk.avg_test_return_pct)}</span>
+      </div>
+    `;
+    optimizationList.append(item);
+  });
+}
+
 async function loadDashboard() {
   if (loading) return;
   loading = true;
@@ -363,6 +408,7 @@ async function loadDashboard() {
       renderBacktest(chart);
       renderValidation(chart);
       renderParams(chart);
+      renderOptimization(chart);
     }
     const currentTime = formatDate(new Date().toISOString());
     refreshStatus.textContent = `已同步 ${currentTime}`;
