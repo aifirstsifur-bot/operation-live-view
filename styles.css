@@ -231,8 +231,35 @@ h1 {
 }
 
 .performance-panel,
-.validation-panel {
+.validation-panel,
+.params-panel {
   grid-column: 1 / -1;
+}
+
+.params-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.params-grid span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  min-height: 38px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.052);
+  color: var(--text);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.params-grid strong {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
 .performance-grid {

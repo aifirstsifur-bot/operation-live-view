@@ -18,6 +18,8 @@ const performanceMeta = document.querySelector("#performanceMeta");
 const performanceGrid = document.querySelector("#performanceGrid");
 const validationMeta = document.querySelector("#validationMeta");
 const validationGrid = document.querySelector("#validationGrid");
+const paramsMeta = document.querySelector("#paramsMeta");
+const paramsGrid = document.querySelector("#paramsGrid");
 const gridLayer = document.querySelector("#gridLayer");
 const axisLayer = document.querySelector("#axisLayer");
 const priceLine = document.querySelector("#priceLine");
@@ -312,6 +314,30 @@ function renderValidation(chart) {
   }
 }
 
+function renderParams(chart) {
+  const backtest = chart.backtest || {};
+  const params = backtest.params || {};
+  paramsMeta.textContent = backtest.strategy || "--";
+  const rows = [
+    ["fast", params.fast_period],
+    ["slow", params.slow_period],
+    ["trend", params.trend_period],
+    ["ATR", `${formatNumber(params.min_atr_pct, 3)}-${formatNumber(params.max_atr_pct, 3)}`],
+    ["slope", params.min_slope_pct],
+    ["stop", `${formatNumber(params.stop_atr)} ATR`],
+    ["take", `${formatNumber(params.take_profit_r)}R`],
+    ["hold", `${params.min_hold_bars || "--"}-${params.max_hold_bars || "--"}`],
+    ["cooldown", params.cooldown_bars],
+  ];
+
+  paramsGrid.replaceChildren();
+  for (const [label, value] of rows) {
+    const item = document.createElement("span");
+    item.innerHTML = `<strong>${label}</strong>${value ?? "--"}`;
+    paramsGrid.append(item);
+  }
+}
+
 async function loadDashboard() {
   if (loading) return;
   loading = true;
@@ -336,6 +362,7 @@ async function loadDashboard() {
       renderChart(chart);
       renderBacktest(chart);
       renderValidation(chart);
+      renderParams(chart);
     }
     const currentTime = formatDate(new Date().toISOString());
     refreshStatus.textContent = `已同步 ${currentTime}`;
