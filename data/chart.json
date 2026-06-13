@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-13T09:55:54Z",
+  "generated_at": "2026-06-13T10:00:56Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1780264800000,
-      "open": 73892.6,
-      "high": 73999.0,
-      "low": 73687.5,
-      "close": 73943.9
-    },
     {
       "ts": 1780268400000,
       "open": 73943.9,
@@ -2100,8 +2093,15 @@
       "ts": 1781341200000,
       "open": 63802.5,
       "high": 63866.3,
-      "low": 63737.9,
-      "close": 63769.5
+      "low": 63734.4,
+      "close": 63743.0
+    },
+    {
+      "ts": 1781344800000,
+      "open": 63743.0,
+      "high": 63753.1,
+      "low": 63737.8,
+      "close": 63737.9
     }
   ],
   "markers": [
@@ -2116,7 +2116,7 @@
     },
     {
       "ts": 1780527600000,
-      "price": 64235.71099887701,
+      "price": 64235.16829973015,
       "side": "buy",
       "action": "exit",
       "reason": "take_profit",
@@ -2152,7 +2152,7 @@
     },
     {
       "ts": 1780668000000,
-      "price": 60360.00435167821,
+      "price": 60359.96067195232,
       "side": "buy",
       "action": "exit",
       "reason": "take_profit",
@@ -2234,17 +2234,17 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 10049.91139254404,
-      "total_return_pct": 0.49911392544039757,
-      "max_drawdown_pct": 1.009478210305378,
+      "ending_cash": 10049.913445590433,
+      "total_return_pct": 0.4991344559043265,
+      "max_drawdown_pct": 1.0094777115061393,
       "trades": 6,
       "win_rate_pct": 50.0,
-      "profit_factor": 1.5396941151090047,
-      "avg_trade_pnl": 8.31856542400638,
-      "worst_trade_pnl": -31.383041136372555,
-      "best_trade_pnl": 70.43290314991603,
+      "profit_factor": 1.5397164427175485,
+      "avg_trade_pnl": 8.318907598405621,
+      "worst_trade_pnl": -31.383047545778123,
+      "best_trade_pnl": 70.43301717479736,
       "consecutive_losses": 3,
-      "total_fees": 30.791847038263473,
+      "total_fees": 30.79006328795921,
       "total_funding_cost": 0.0
     }
   },
