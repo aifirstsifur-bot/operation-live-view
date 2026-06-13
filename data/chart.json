@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-13T02:57:38Z",
+  "generated_at": "2026-06-13T03:02:40Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1780239600000,
-      "open": 73601.1,
-      "high": 73784.4,
-      "low": 73586.1,
-      "close": 73651.9
-    },
     {
       "ts": 1780243200000,
       "open": 73651.9,
@@ -2101,7 +2094,14 @@
       "open": 63838.5,
       "high": 63838.5,
       "low": 63555.0,
-      "close": 63624.7
+      "close": 63643.8
+    },
+    {
+      "ts": 1781319600000,
+      "open": 63643.8,
+      "high": 63697.9,
+      "low": 63643.8,
+      "close": 63697.2
     }
   ],
   "markers": [
@@ -2116,7 +2116,7 @@
     },
     {
       "ts": 1780527600000,
-      "price": 64239.45629051566,
+      "price": 64238.98412784685,
       "side": "buy",
       "action": "exit",
       "reason": "take_profit",
@@ -2152,7 +2152,7 @@
     },
     {
       "ts": 1780668000000,
-      "price": 60360.305795513275,
+      "price": 60360.26779299187,
       "side": "buy",
       "action": "exit",
       "reason": "take_profit",
@@ -2206,7 +2206,7 @@
     },
     {
       "ts": 1781316000000,
-      "price": 63592.887650000004,
+      "price": 63611.97810000001,
       "side": "sell",
       "action": "exit",
       "reason": "fast below slow",
@@ -2234,17 +2234,17 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 10048.80233990965,
-      "total_return_pct": 0.4880233990964822,
-      "max_drawdown_pct": 1.009481652670522,
+      "ending_cash": 10049.898985010612,
+      "total_return_pct": 0.49898985010612407,
+      "max_drawdown_pct": 1.0094812186937678,
       "trades": 6,
       "win_rate_pct": 50.0,
-      "profit_factor": 1.5215268386175356,
-      "avg_trade_pnl": 8.133723318274775,
-      "worst_trade_pnl": -32.47784848892634,
-      "best_trade_pnl": 70.43211590692073,
+      "profit_factor": 1.5395591819128573,
+      "avg_trade_pnl": 8.316497501768518,
+      "worst_trade_pnl": -31.383002401273668,
+      "best_trade_pnl": 70.43221518523717,
       "consecutive_losses": 3,
-      "total_fees": 30.803087274660154,
+      "total_fees": 30.802625502075227,
       "total_funding_cost": 0.0
     }
   },
