@@ -1,5 +1,5 @@
 {
-  "published_at": "2026-06-14T18:21:08Z",
+  "published_at": "2026-06-14T18:26:11Z",
   "source": "quant-trading-okx",
   "mode": "paper",
   "payload_type": "decision",
@@ -11,7 +11,7 @@
     "reason": "volatility too low",
     "stop_price": null,
     "take_profit_price": null,
-    "last_close": 63712.0,
+    "last_close": 63732.7,
     "execute": false,
     "state_path": "data/auto_trade_state.json"
   }
