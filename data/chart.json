@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-14T23:58:45Z",
+  "generated_at": "2026-06-15T00:03:47Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1780401600000,
-      "open": 69457.7,
-      "high": 69546.7,
-      "low": 69000.0,
-      "close": 69017.3
-    },
     {
       "ts": 1780405200000,
       "open": 69017.4,
@@ -2101,28 +2094,17 @@
       "open": 65424.0,
       "high": 65797.2,
       "low": 65259.5,
-      "close": 65751.5
+      "close": 65744.1
+    },
+    {
+      "ts": 1781481600000,
+      "open": 65744.1,
+      "high": 65770.7,
+      "low": 65660.2,
+      "close": 65660.2
     }
   ],
   "markers": [
-    {
-      "ts": 1780624800000,
-      "price": 62594.78695,
-      "side": "sell",
-      "action": "entry",
-      "reason": "backtest short entry",
-      "strategy": "trend-long-short",
-      "source": "backtest"
-    },
-    {
-      "ts": 1780668000000,
-      "price": 60351.39918872063,
-      "side": "buy",
-      "action": "exit",
-      "reason": "take_profit",
-      "strategy": "trend-long-short",
-      "source": "backtest"
-    },
     {
       "ts": 1780754400000,
       "price": 60767.4011,
@@ -2198,17 +2180,17 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 9978.136870765491,
-      "total_return_pct": -0.21863129234509504,
-      "max_drawdown_pct": 1.0093799699172294,
-      "trades": 4,
-      "win_rate_pct": 25.0,
-      "profit_factor": 0.7618717925774486,
-      "avg_trade_pnl": -5.465782308627473,
-      "worst_trade_pnl": -31.15890920289891,
-      "best_trade_pnl": 69.94930017547776,
+      "ending_cash": 9908.826530452372,
+      "total_return_pct": -0.911734695476285,
+      "max_drawdown_pct": 1.009364965294937,
+      "trades": 3,
+      "win_rate_pct": 0.0,
+      "profit_factor": 0.0,
+      "avg_trade_pnl": -30.391156515875736,
+      "worst_trade_pnl": -30.942472494721027,
+      "best_trade_pnl": -29.65201596126933,
       "consecutive_losses": 3,
-      "total_fees": 21.268265282247924,
+      "total_fees": 17.09277750906292,
       "total_funding_cost": 0.0
     }
   },
