@@ -1,5 +1,5 @@
 {
-  "published_at": "2026-06-15T19:58:22Z",
+  "published_at": "2026-06-15T20:03:24Z",
   "source": "quant-trading-okx",
   "mode": "paper",
   "payload_type": "decision",
@@ -11,7 +11,7 @@
     "reason": "no trend cross",
     "stop_price": null,
     "take_profit_price": null,
-    "last_close": 66599.5,
+    "last_close": 66607.7,
     "execute": false,
     "state_path": "data/auto_trade_state.json"
   }
