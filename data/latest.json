@@ -1,5 +1,5 @@
 {
-  "published_at": "2026-06-16T12:46:34Z",
+  "published_at": "2026-06-16T12:51:37Z",
   "source": "quant-trading-okx",
   "mode": "paper",
   "payload_type": "decision",
@@ -9,16 +9,16 @@
     "instId": "BTC-USDT",
     "signal": "buy",
     "reason": "uptrend SMA cross",
-    "stop_price": 65684.86069370127,
-    "take_profit_price": 67613.45895944811,
-    "last_close": 66456.3,
+    "stop_price": 65612.53212227269,
+    "take_profit_price": 67548.95181659097,
+    "last_close": 66387.1,
     "execute": false,
     "state_path": "data/auto_trade_state.json",
     "position_side": "long",
     "order": {
       "side": "buy",
-      "size": 0.06481391289211509,
-      "price": 66456.3,
+      "size": 0.06455212181882206,
+      "price": 66387.1,
       "reduce_only": false,
       "reason": "uptrend SMA cross"
     },
