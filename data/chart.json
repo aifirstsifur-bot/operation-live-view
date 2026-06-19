@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-19T10:15:08Z",
+  "generated_at": "2026-06-19T10:20:09Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
@@ -2101,7 +2101,7 @@
       "open": 62374.1,
       "high": 62550.0,
       "low": 62368.5,
-      "close": 62528.6
+      "close": 62434.4
     }
   ],
   "markers": [
@@ -2176,7 +2176,14 @@
       "take_profit_r": 1.5,
       "min_hold_bars": 2,
       "max_hold_bars": 12,
-      "cooldown_bars": 1
+      "cooldown_bars": 1,
+      "regime_period": 200,
+      "regime_slope_period": 72,
+      "bullish_long_mult": 1.0,
+      "bullish_short_mult": 0.5,
+      "neutral_mult": 0.5,
+      "defensive_long_mult": 0.5,
+      "defensive_short_mult": 1.0
     },
     "report": {
       "starting_cash": 10000.0,
