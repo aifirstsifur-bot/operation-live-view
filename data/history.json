@@ -1,5 +1,94 @@
 [
   {
+    "published_at": "2026-06-20T10:05:08Z",
+    "source": "quant-trading-okx",
+    "mode": "paper",
+    "payload_type": "decision",
+    "payload": {
+      "action": "hold",
+      "strategy": "trend-long-short",
+      "instId": "BTC-USDT",
+      "signal": "hold",
+      "reason": "volatility too low",
+      "stop_price": null,
+      "take_profit_price": null,
+      "regime": "defensive",
+      "size_multiplier": 0.0,
+      "last_close": 63765.7,
+      "execute": false,
+      "state_path": "data/auto_trade_state.json"
+    }
+  },
+  {
+    "published_at": "2026-06-20T10:04:00Z",
+    "source": "quant-trading-okx",
+    "mode": "paper",
+    "payload_type": "api_readiness",
+    "payload": {
+      "status": "blocked",
+      "mode": "paper",
+      "instId": "BTC-USDT",
+      "tdMode": "cash",
+      "checks": [
+        {
+          "name": "env_file",
+          "status": "fail",
+          "detail": ".env not found"
+        },
+        {
+          "name": "credentials",
+          "status": "fail",
+          "detail": "api_key:missing,api_secret:missing,passphrase:missing"
+        },
+        {
+          "name": "paper_mode",
+          "status": "pass",
+          "detail": "OKX_USE_PAPER=True"
+        },
+        {
+          "name": "live_order_gate",
+          "status": "pass",
+          "detail": "ALLOW_LIVE_ORDER=False"
+        },
+        {
+          "name": "instrument_mode",
+          "status": "warn",
+          "detail": "BTC-USDT / cash / SPOT"
+        },
+        {
+          "name": "public_instruments",
+          "status": "pass",
+          "detail": "ok"
+        },
+        {
+          "name": "private_balance",
+          "status": "skip",
+          "detail": "credentials missing"
+        }
+      ],
+      "blockers": [
+        "missing_env_file",
+        "missing_credentials"
+      ],
+      "credential_state": {
+        "api_key": "missing",
+        "api_secret": "missing",
+        "passphrase": "missing"
+      },
+      "instrument": {
+        "instId": "BTC-USDT",
+        "instType": "SPOT",
+        "state": "live",
+        "minSz": "0.00001",
+        "lotSz": "0.00000001",
+        "tickSz": "0.1",
+        "ctVal": "",
+        "ctValCcy": ""
+      },
+      "private_balance_code": null
+    }
+  },
+  {
     "published_at": "2026-06-20T10:00:07Z",
     "source": "quant-trading-okx",
     "mode": "paper",
@@ -2064,46 +2153,6 @@
       "regime": "defensive",
       "size_multiplier": 0.0,
       "last_close": 63573.0,
-      "execute": false,
-      "state_path": "data/auto_trade_state.json"
-    }
-  },
-  {
-    "published_at": "2026-06-20T01:53:24Z",
-    "source": "quant-trading-okx",
-    "mode": "paper",
-    "payload_type": "decision",
-    "payload": {
-      "action": "hold",
-      "strategy": "trend-long-short",
-      "instId": "BTC-USDT",
-      "signal": "hold",
-      "reason": "no trend cross",
-      "stop_price": null,
-      "take_profit_price": null,
-      "regime": "defensive",
-      "size_multiplier": 0.0,
-      "last_close": 63566.9,
-      "execute": false,
-      "state_path": "data/auto_trade_state.json"
-    }
-  },
-  {
-    "published_at": "2026-06-20T01:48:23Z",
-    "source": "quant-trading-okx",
-    "mode": "paper",
-    "payload_type": "decision",
-    "payload": {
-      "action": "hold",
-      "strategy": "trend-long-short",
-      "instId": "BTC-USDT",
-      "signal": "hold",
-      "reason": "no trend cross",
-      "stop_price": null,
-      "take_profit_price": null,
-      "regime": "defensive",
-      "size_multiplier": 0.0,
-      "last_close": 63586.9,
       "execute": false,
       "state_path": "data/auto_trade_state.json"
     }

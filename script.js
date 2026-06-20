@@ -88,6 +88,34 @@ function flowStateForReadiness(verdict) {
 }
 
 function setFlow(payload, snapshot, reason, signal) {
+  if (snapshot.payload_type === "api_readiness") {
+    const checks = payload.checks || [];
+    const checkMap = Object.fromEntries(checks.map((check) => [check.name, check]));
+    const flow = [
+      ["Env 檔案", checkMap.env_file?.detail || "--", checkMap.env_file?.status === "pass" ? "safe" : "blocked"],
+      ["Credentials", checkMap.credentials?.detail || "--", checkMap.credentials?.status === "pass" ? "safe" : "blocked"],
+      ["Paper / Live Gate", checkMap.live_order_gate?.detail || "--", checkMap.live_order_gate?.status === "pass" ? "safe" : "blocked"],
+      ["Instrument", checkMap.instrument_mode?.detail || "--", checkMap.instrument_mode?.status === "pass" ? "safe" : "idle"],
+      ["Public Endpoint", checkMap.public_instruments?.detail || "--", checkMap.public_instruments?.status === "pass" ? "safe" : "blocked"],
+      ["Private Balance", checkMap.private_balance?.detail || "--", checkMap.private_balance?.status === "pass" ? "safe" : "idle"],
+      ["API Gate", `${payload.status || "unknown"} · ${(payload.blockers || []).join(", ") || "no blockers"}`, payload.status === "blocked" ? "blocked" : "safe"],
+    ];
+    flowList.replaceChildren();
+    for (const [title, detail, state] of flow) {
+      const item = document.createElement("li");
+      item.className = `flow-step ${state}`;
+      item.innerHTML = `
+        <span class="flow-dot"></span>
+        <div>
+          <strong>${title}</strong>
+          <p>${detail}</p>
+        </div>
+      `;
+      flowList.append(item);
+    }
+    return;
+  }
+
   const readiness = payload.trade_readiness || {};
   const decision = payload.decision || {};
   const risk = payload.risk_review || {};
@@ -134,6 +162,39 @@ function setFlow(payload, snapshot, reason, signal) {
 
 function renderSnapshot(snapshot) {
   const payload = snapshot.payload || {};
+  if (snapshot.payload_type === "api_readiness") {
+    const status = (payload.status || "unknown").toLowerCase();
+    const signal = status === "blocked" ? "sell" : status.includes("ready") ? "buy" : "hold";
+    const checks = payload.checks || [];
+    const failed = checks.filter((check) => check.status === "fail").length;
+    const warned = checks.filter((check) => check.status === "warn").length;
+    const passed = checks.filter((check) => check.status === "pass").length;
+
+    signalPanel.className = `panel signal-panel signal-${signal}`;
+    signalValue.textContent = status === "blocked" ? "BLOCK" : "API";
+    actionValue.textContent = "api-readiness";
+    reasonText.textContent = (payload.blockers || []).join(", ") || payload.status || "ready";
+    instrumentText.textContent = payload.instId || "--";
+    strategyText.textContent = "api-readiness";
+    lastCloseText.textContent = `${passed}/${checks.length || 0} pass`;
+    modeText.textContent = `${payload.mode || "--"} / ${payload.tdMode || "--"}`;
+    updatedAtText.textContent = formatDate(snapshot.published_at);
+    sourceText.textContent = snapshot.source || "--";
+
+    setFlow(payload, snapshot, reasonText.textContent, signal);
+    const rows = [
+      [formatDate(snapshot.published_at), `API gate：${payload.status || "--"}`],
+      ["checks", `pass ${passed}, warn ${warned}, fail ${failed}`],
+      ["blockers", (payload.blockers || []).join(", ") || "none"],
+      ["credentials", Object.entries(payload.credential_state || {}).map(([key, value]) => `${key}:${value}`).join(", ")],
+    ];
+    if (payload.instrument) {
+      rows.push(["instrument", `${payload.instrument.instId} ${payload.instrument.instType} min ${payload.instrument.minSz}`]);
+    }
+    setRows(rows);
+    return;
+  }
+
   const decision = payload.decision || {};
   const signal = (payload.signal || decision.signal || payload.action || "unknown").toLowerCase();
   const action = (payload.action || decision.action || "unknown").toLowerCase();
