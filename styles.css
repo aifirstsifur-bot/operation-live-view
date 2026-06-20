@@ -592,6 +592,11 @@ h1 {
   box-shadow: 0 0 0 5px rgba(240, 93, 106, 0.13);
 }
 
+.flow-step.blocked .flow-dot {
+  background: var(--red);
+  box-shadow: 0 0 0 5px rgba(240, 93, 106, 0.13);
+}
+
 .flow-step.idle .flow-dot {
   background: var(--amber);
   box-shadow: 0 0 0 5px rgba(246, 182, 75, 0.13);

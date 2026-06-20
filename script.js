@@ -30,7 +30,7 @@ const priceLabelLayer = document.querySelector("#priceLabelLayer");
 const emptyMarkers = document.querySelector("#emptyMarkers");
 const markerList = document.querySelector("#markerList");
 const REFRESH_SECONDS = 30;
-const DATA_BASE_URL = "https://raw.githubusercontent.com/aifirstsifur-bot/operation-live-view/main/data";
+const DATA_BASE_URL = new URL("./data", window.location.href).toString().replace(/\/$/, "");
 let nextRefreshAt = Date.now() + REFRESH_SECONDS * 1000;
 let loading = false;
 
@@ -80,12 +80,41 @@ function setRows(rows) {
   }
 }
 
+function flowStateForReadiness(verdict) {
+  if (verdict === "paper_review") return "safe";
+  if (verdict === "watchlist") return "idle";
+  if (verdict === "blocked") return "blocked";
+  return "idle";
+}
+
 function setFlow(payload, snapshot, reason, signal) {
+  const readiness = payload.trade_readiness || {};
+  const decision = payload.decision || {};
+  const risk = payload.risk_review || {};
+  const hasRiskReview = Object.keys(risk).length > 0;
+  const order = payload.order || {};
+  const hasOrder = Boolean(order.side || order.size);
+  const protection = payload.protection_result ? "OCO protection placed" : "waiting for executable entry";
+  const ledger = payload.paper_record ? "ledger updated" : payload.state_path || "ledger pending";
+  const verdict = readiness.verdict || (signal === "hold" ? "wait" : "manual_review");
+  const readinessDetail = readiness.score !== undefined
+    ? `${readiness.score}/${readiness.max_score} · ${verdict}`
+    : verdict;
+  const riskDetail = !hasRiskReview
+    ? "auto-trade safety path"
+    : risk.valid_size
+    ? `size ${formatNumber(risk.adjusted_size, 6)}`
+    : (readiness.blockers || risk.blockers || ["not evaluated"]).join(", ");
+
   const flow = [
-    ["取得市場資料", `${payload.instId || "--"} 1H candle`, "done"],
-    ["套用策略", payload.strategy || "--", "done"],
-    ["安全閘", `${snapshot.mode || "--"} mode, ${payload.execute ? "execute=true" : "execute=false"}`, "safe"],
-    ["決策", `${signal}: ${reason}`, signal === "hold" ? "idle" : signal],
+    ["取得市場資料", `${payload.instId || "--"} ${payload.bar || "1H"} candle`, "done"],
+    ["策略訊號", `${payload.strategy || "--"} · ${signal}: ${reason}`, signal === "hold" ? "idle" : signal],
+    ["Readiness Gate", readinessDetail, flowStateForReadiness(verdict)],
+    ["風控檢查", riskDetail, !hasRiskReview || risk.valid_size ? "safe" : "blocked"],
+    ["Paper Review", verdict === "paper_review" ? "ready for manual paper review" : "not promoted", verdict === "paper_review" ? "safe" : "idle"],
+    ["Demo Execute", hasOrder && payload.execute ? `${order.side} ${formatNumber(order.size, 6)}` : "execute=false / waiting", hasOrder && payload.execute ? signal : "idle"],
+    ["TP/SL 保護", protection, payload.protection_result ? "safe" : "idle"],
+    ["Ledger / State", ledger, payload.paper_record ? "safe" : "idle"],
   ];
 
   flowList.replaceChildren();
@@ -105,10 +134,16 @@ function setFlow(payload, snapshot, reason, signal) {
 
 function renderSnapshot(snapshot) {
   const payload = snapshot.payload || {};
-  const signal = (payload.signal || payload.action || "unknown").toLowerCase();
-  const action = (payload.action || "unknown").toLowerCase();
+  const decision = payload.decision || {};
+  const signal = (payload.signal || decision.signal || payload.action || "unknown").toLowerCase();
+  const action = (payload.action || decision.action || "unknown").toLowerCase();
   const reason = payload.reason || payload.decision?.reason || "no reason";
   const execute = payload.execute === true ? "execute=true" : "execute=false";
+  const readiness = payload.trade_readiness || {};
+  const publicStats = payload.okx_public_stats || {};
+  const funding = publicStats.funding_rate || {};
+  const openInterest = publicStats.open_interest || {};
+  const longShort = publicStats.long_short_account_ratio || {};
 
   signalPanel.className = `panel signal-panel signal-${signal}`;
   signalValue.textContent = signal.toUpperCase();
@@ -116,8 +151,8 @@ function renderSnapshot(snapshot) {
   reasonText.textContent = reason;
   instrumentText.textContent = payload.instId || payload.position?.inst_id || "--";
   strategyText.textContent = payload.strategy || "--";
-  lastCloseText.textContent = formatPrice(payload.last_close || payload.order?.price);
-  modeText.textContent = `${snapshot.mode || "--"} / ${execute}`;
+  lastCloseText.textContent = formatPrice(payload.last_close || payload.latest_candle?.close || payload.order?.price);
+  modeText.textContent = readiness.score !== undefined ? `readiness ${readiness.score}/${readiness.max_score}` : `${snapshot.mode || "--"} / ${execute}`;
   updatedAtText.textContent = formatDate(snapshot.published_at);
   sourceText.textContent = snapshot.source || "--";
 
@@ -129,8 +164,15 @@ function renderSnapshot(snapshot) {
     ["reason", `原因：${reason}`],
   ];
 
+  if (readiness.score !== undefined) rows.push(["gate", `readiness：${readiness.score}/${readiness.max_score} · ${readiness.verdict}`]);
+  if (readiness.blockers?.length) rows.push(["blockers", readiness.blockers.join(", ")]);
   if (payload.stop_price) rows.push(["stop", `停損：${formatPrice(payload.stop_price)}`]);
   if (payload.take_profit_price) rows.push(["take", `停利：${formatPrice(payload.take_profit_price)}`]);
+  if (decision.stop_price) rows.push(["stop", `停損：${formatPrice(decision.stop_price)}`]);
+  if (decision.take_profit_price) rows.push(["take", `停利：${formatPrice(decision.take_profit_price)}`]);
+  if (funding.current !== undefined) rows.push(["funding", `funding：${formatNumber(Number(funding.current) * 100, 5)}%`]);
+  if (openInterest.oi_usd) rows.push(["OI", `open interest：$${formatNumber(openInterest.oi_usd, 0)}`]);
+  if (longShort.ratio) rows.push(["L/S", `long-short：${formatNumber(longShort.ratio)}`]);
   if (payload.state_path) rows.push(["state", `狀態檔：${payload.state_path}`]);
 
   setRows(rows);
