@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-23T21:57:59Z",
+  "generated_at": "2026-06-23T22:03:00Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1781172000000,
-      "open": 62930.4,
-      "high": 63222.8,
-      "low": 62800.3,
-      "close": 63140.8
-    },
     {
       "ts": 1781175600000,
       "open": 63140.8,
@@ -2101,29 +2094,17 @@
       "open": 62471.8,
       "high": 62658.6,
       "low": 62471.8,
-      "close": 62583.4
-    }
-  ],
-  "markers": [
-    {
-      "ts": 1781611200000,
-      "price": 66464.0154,
-      "side": "buy",
-      "action": "entry",
-      "reason": "backtest long entry",
-      "strategy": "trend-long-short",
-      "source": "backtest"
+      "close": 62600.9
     },
     {
-      "ts": 1781618400000,
-      "price": 65654.7672130344,
-      "side": "sell",
-      "action": "exit",
-      "reason": "stop_loss",
-      "strategy": "trend-long-short",
-      "source": "backtest"
+      "ts": 1782252000000,
+      "open": 62601.0,
+      "high": 62635.4,
+      "low": 62586.0,
+      "close": 62632.0
     }
   ],
+  "markers": [],
   "backtest": {
     "strategy": "trend-long-short",
     "window_candles": 300,
@@ -2153,18 +2134,18 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 9939.37650327186,
-      "total_return_pct": -0.6062349672813938,
-      "max_drawdown_pct": 0.606234967281398,
-      "trades": 1,
-      "win_rate_pct": 0.0,
-      "profit_factor": 0.0,
-      "avg_trade_pnl": -60.623496728140395,
-      "worst_trade_pnl": -60.623496728140395,
-      "best_trade_pnl": -60.623496728140395,
-      "consecutive_losses": 1,
-      "total_fees": 8.508374358038381,
-      "total_funding_cost": 0.0
+      "ending_cash": 10000.0,
+      "total_return_pct": 0.0,
+      "max_drawdown_pct": 0.0,
+      "trades": 0,
+      "win_rate_pct": 0,
+      "profit_factor": 0,
+      "avg_trade_pnl": 0,
+      "worst_trade_pnl": 0,
+      "best_trade_pnl": 0,
+      "consecutive_losses": 0,
+      "total_fees": 0,
+      "total_funding_cost": 0
     }
   },
   "validation": {
