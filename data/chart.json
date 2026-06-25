@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-25T13:57:24Z",
+  "generated_at": "2026-06-25T14:02:25Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1781316000000,
-      "open": 63838.5,
-      "high": 63838.5,
-      "low": 63555.0,
-      "close": 63643.8
-    },
     {
       "ts": 1781319600000,
       "open": 63643.8,
@@ -2100,11 +2093,37 @@
       "ts": 1782392400000,
       "open": 61246.8,
       "high": 61372.0,
-      "low": 58458.7,
-      "close": 58520.0
+      "low": 58110.0,
+      "close": 58298.0
+    },
+    {
+      "ts": 1782396000000,
+      "open": 58297.3,
+      "high": 59114.1,
+      "low": 58297.3,
+      "close": 59066.5
     }
   ],
-  "markers": [],
+  "markers": [
+    {
+      "ts": 1782396000000,
+      "price": 59036.96675000001,
+      "side": "sell",
+      "action": "entry",
+      "reason": "backtest short entry",
+      "strategy": "trend-long-short",
+      "source": "backtest"
+    },
+    {
+      "ts": 1782396000000,
+      "price": 59096.03324999999,
+      "side": "buy",
+      "action": "exit",
+      "reason": "end_of_data",
+      "strategy": "trend-long-short",
+      "source": "backtest"
+    }
+  ],
   "backtest": {
     "strategy": "trend-long-short",
     "window_candles": 300,
@@ -2134,18 +2153,18 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 10000.0,
-      "total_return_pct": 0.0,
-      "max_drawdown_pct": 0.0,
-      "trades": 0,
-      "win_rate_pct": 0,
-      "profit_factor": 0,
-      "avg_trade_pnl": 0,
-      "worst_trade_pnl": 0,
-      "best_trade_pnl": 0,
+      "ending_cash": 9993.345356419615,
+      "total_return_pct": -0.06654643580384922,
+      "max_drawdown_pct": 0.011091072633971636,
+      "trades": 1,
+      "win_rate_pct": 0.0,
+      "profit_factor": 0.0,
+      "avg_trade_pnl": -6.654643580385278,
+      "worst_trade_pnl": -6.654643580385278,
+      "best_trade_pnl": -6.654643580385278,
       "consecutive_losses": 0,
-      "total_fees": 0,
-      "total_funding_cost": 0
+      "total_fees": 4.436429053590529,
+      "total_funding_cost": 0.0
     }
   },
   "validation": {
