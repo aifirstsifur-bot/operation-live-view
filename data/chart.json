@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-26T14:58:07Z",
+  "generated_at": "2026-06-26T15:03:08Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1781406000000,
-      "open": 64489.8,
-      "high": 64548.6,
-      "low": 64463.7,
-      "close": 64545.1
-    },
     {
       "ts": 1781409600000,
       "open": 64545.1,
@@ -2101,7 +2094,14 @@
       "open": 60180.9,
       "high": 60297.0,
       "low": 59391.5,
-      "close": 59624.2
+      "close": 59598.2
+    },
+    {
+      "ts": 1782486000000,
+      "open": 59596.7,
+      "high": 59729.6,
+      "low": 59580.9,
+      "close": 59722.9
     }
   ],
   "markers": [
@@ -2120,6 +2120,24 @@
       "side": "buy",
       "action": "exit",
       "reason": "fast above slow",
+      "strategy": "trend-long-short",
+      "source": "backtest"
+    },
+    {
+      "ts": 1782486000000,
+      "price": 59693.038550000005,
+      "side": "sell",
+      "action": "entry",
+      "reason": "backtest short entry",
+      "strategy": "trend-long-short",
+      "source": "backtest"
+    },
+    {
+      "ts": 1782486000000,
+      "price": 59752.76145,
+      "side": "buy",
+      "action": "exit",
+      "reason": "end_of_data",
       "strategy": "trend-long-short",
       "source": "backtest"
     }
@@ -2153,17 +2171,17 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 9959.416468555935,
-      "total_return_pct": -0.40583531444065013,
-      "max_drawdown_pct": 0.6900048182458073,
-      "trades": 1,
+      "ending_cash": 9953.131129221847,
+      "total_return_pct": -0.46868870778152827,
+      "max_drawdown_pct": 0.7004504941065246,
+      "trades": 2,
       "win_rate_pct": 0.0,
       "profit_factor": 0.0,
-      "avg_trade_pnl": -40.583531444064086,
-      "worst_trade_pnl": -40.583531444064086,
-      "best_trade_pnl": -40.583531444064086,
+      "avg_trade_pnl": -23.434435389076597,
+      "worst_trade_pnl": -40.58353144206184,
+      "best_trade_pnl": -6.285339336091358,
       "consecutive_losses": 1,
-      "total_fees": 3.9292659207906597,
+      "total_fees": 8.119492144657864,
       "total_funding_cost": 0.0
     }
   },
