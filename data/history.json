@@ -1,5 +1,36 @@
 [
   {
+    "published_at": "2026-06-27T01:15:32Z",
+    "source": "quant-trading-okx",
+    "mode": "paper",
+    "payload_type": "decision",
+    "payload": {
+      "action": "entry",
+      "strategy": "trend-long-short",
+      "instId": "BTC-USDT",
+      "signal": "sell",
+      "reason": "downtrend SMA cross; regime=defensive",
+      "stop_price": 61078.948085063654,
+      "take_profit_price": 58327.82787240452,
+      "regime": "defensive",
+      "size_multiplier": 1.0,
+      "last_close": 59978.5,
+      "execute": false,
+      "state_path": "data/auto_trade_state.json",
+      "position_side": "short",
+      "order": {
+        "side": "sell",
+        "size": 0.04543603708221077,
+        "base_size": 0.04543603708221077,
+        "size_multiplier": 1.0,
+        "price": 59978.5,
+        "reduce_only": false,
+        "reason": "downtrend SMA cross; regime=defensive"
+      },
+      "dry_run": true
+    }
+  },
+  {
     "published_at": "2026-06-27T01:10:31Z",
     "source": "quant-trading-okx",
     "mode": "paper",
@@ -2030,26 +2061,6 @@
       "regime": "defensive",
       "size_multiplier": 0.0,
       "last_close": 60062.4,
-      "execute": false,
-      "state_path": "data/auto_trade_state.json"
-    }
-  },
-  {
-    "published_at": "2026-06-26T16:53:34Z",
-    "source": "quant-trading-okx",
-    "mode": "paper",
-    "payload_type": "decision",
-    "payload": {
-      "action": "hold",
-      "strategy": "trend-long-short",
-      "instId": "BTC-USDT",
-      "signal": "hold",
-      "reason": "no trend cross",
-      "stop_price": null,
-      "take_profit_price": null,
-      "regime": "defensive",
-      "size_multiplier": 0.0,
-      "last_close": 60016.8,
       "execute": false,
       "state_path": "data/auto_trade_state.json"
     }
