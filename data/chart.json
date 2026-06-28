@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-28T08:57:59Z",
+  "generated_at": "2026-06-28T09:03:00Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1781557200000,
-      "open": 66525.2,
-      "high": 66567.9,
-      "low": 66341.5,
-      "close": 66372.0
-    },
     {
       "ts": 1781560800000,
       "open": 66372.1,
@@ -2101,7 +2094,14 @@
       "open": 60223.3,
       "high": 60551.6,
       "low": 60142.1,
-      "close": 60388.8
+      "close": 60372.7
+    },
+    {
+      "ts": 1782637200000,
+      "open": 60372.7,
+      "high": 60385.9,
+      "low": 60351.2,
+      "close": 60369.5
     }
   ],
   "markers": [
@@ -2169,8 +2169,8 @@
       "source": "backtest"
     },
     {
-      "ts": 1782633600000,
-      "price": 60418.994399999996,
+      "ts": 1782637200000,
+      "price": 60399.68474999999,
       "side": "buy",
       "action": "exit",
       "reason": "end_of_data",
@@ -2207,17 +2207,17 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 9912.397726111794,
-      "total_return_pct": -0.8760227388820541,
-      "max_drawdown_pct": 1.0495616530869363,
+      "ending_cash": 9913.804200547258,
+      "total_return_pct": -0.8619579945274181,
+      "max_drawdown_pct": 1.0378798918958512,
       "trades": 4,
       "win_rate_pct": 25.0,
-      "profit_factor": 0.15003794960751207,
-      "avg_trade_pnl": -21.900568472051376,
-      "worst_trade_pnl": -40.58353147319377,
-      "best_trade_pnl": 15.463826354450394,
+      "profit_factor": 0.15211374455714796,
+      "avg_trade_pnl": -21.548949863185513,
+      "worst_trade_pnl": -40.58353141957706,
+      "best_trade_pnl": 15.463826351336913,
       "consecutive_losses": 1,
-      "total_fees": 22.025764519349387,
+      "total_fees": 22.02435944301655,
       "total_funding_cost": 0.0
     }
   },
