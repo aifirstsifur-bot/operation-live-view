@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-06-27T23:55:55Z",
+  "generated_at": "2026-06-28T00:00:56Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1781524800000,
-      "open": 66231.1,
-      "high": 66603.0,
-      "low": 66108.7,
-      "close": 66571.5
-    },
     {
       "ts": 1781528400000,
       "open": 66571.5,
@@ -2101,7 +2094,14 @@
       "open": 60228.9,
       "high": 60322.5,
       "low": 59950.0,
-      "close": 60066.0
+      "close": 60040.6
+    },
+    {
+      "ts": 1782604800000,
+      "open": 60027.9,
+      "high": 60046.1,
+      "low": 60027.9,
+      "close": 60046.1
     }
   ],
   "markers": [
@@ -2161,7 +2161,7 @@
     },
     {
       "ts": 1782601200000,
-      "price": 60035.967000000004,
+      "price": 60010.5797,
       "side": "sell",
       "action": "entry",
       "reason": "backtest short entry",
@@ -2169,8 +2169,8 @@
       "source": "backtest"
     },
     {
-      "ts": 1782601200000,
-      "price": 60096.032999999996,
+      "ts": 1782604800000,
+      "price": 60076.123049999995,
       "side": "buy",
       "action": "exit",
       "reason": "end_of_data",
@@ -2207,17 +2207,17 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 9937.767019786737,
-      "total_return_pct": -0.6223298021326262,
-      "max_drawdown_pct": 0.7969255916598493,
+      "ending_cash": 9937.37175570503,
+      "total_return_pct": -0.6262824429497105,
+      "max_drawdown_pct": 0.8009070407029126,
       "trades": 4,
       "win_rate_pct": 25.0,
-      "profit_factor": 0.19902782410403155,
-      "avg_trade_pnl": -15.558245053315801,
-      "worst_trade_pnl": -40.583531399094326,
-      "best_trade_pnl": 15.46382635014746,
+      "profit_factor": 0.1980204420692193,
+      "avg_trade_pnl": -15.657061073742184,
+      "worst_trade_pnl": -40.58353142269665,
+      "best_trade_pnl": 15.463826351518012,
       "consecutive_losses": 1,
-      "total_fees": 22.004111489747505,
+      "total_fees": 22.000815432275225,
       "total_funding_cost": 0.0
     }
   },
