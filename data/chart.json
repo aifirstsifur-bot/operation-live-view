@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-07-04T10:56:53Z",
+  "generated_at": "2026-07-04T11:01:55Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1782082800000,
-      "open": 63807.2,
-      "high": 63807.2,
-      "low": 63262.0,
-      "close": 63313.0
-    },
     {
       "ts": 1782086400000,
       "open": 63313.1,
@@ -2099,30 +2092,19 @@
     {
       "ts": 1783159200000,
       "open": 62495.8,
-      "high": 62542.4,
+      "high": 62547.9,
       "low": 62450.4,
-      "close": 62542.3
+      "close": 62513.2
+    },
+    {
+      "ts": 1783162800000,
+      "open": 62513.1,
+      "high": 62513.1,
+      "low": 62478.6,
+      "close": 62478.6
     }
   ],
   "markers": [
-    {
-      "ts": 1782522000000,
-      "price": 59923.6232,
-      "side": "sell",
-      "action": "entry",
-      "reason": "backtest short entry",
-      "strategy": "trend-long-short",
-      "source": "backtest"
-    },
-    {
-      "ts": 1782529200000,
-      "price": 60335.052449999996,
-      "side": "buy",
-      "action": "exit",
-      "reason": "fast above slow",
-      "strategy": "trend-long-short",
-      "source": "backtest"
-    },
     {
       "ts": 1782601200000,
       "price": 60010.5797,
@@ -2171,17 +2153,17 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 9960.579211643479,
-      "total_return_pct": -0.39420788356521186,
-      "max_drawdown_pct": 0.5047616371824551,
-      "trades": 2,
+      "ending_cash": 9984.602611196,
+      "total_return_pct": -0.15397388804000434,
+      "max_drawdown_pct": 0.27834266914316796,
+      "trades": 1,
       "win_rate_pct": 0.0,
       "profit_factor": 0.0,
-      "avg_trade_pnl": -19.71039417826116,
-      "worst_trade_pnl": -24.06046171506046,
-      "best_trade_pnl": -15.360326641461867,
-      "consecutive_losses": 2,
-      "total_fees": 14.203882440690329,
+      "avg_trade_pnl": -15.39738880399965,
+      "worst_trade_pnl": -15.39738880399965,
+      "best_trade_pnl": -15.39738880399965,
+      "consecutive_losses": 1,
+      "total_fees": 8.782960256952562,
       "total_funding_cost": 0.0
     }
   },
