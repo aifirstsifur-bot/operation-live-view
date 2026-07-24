@@ -1,5 +1,5 @@
 {
-  "published_at": "2026-07-24T13:55:10Z",
+  "published_at": "2026-07-24T14:00:11Z",
   "source": "quant-trading-okx",
   "mode": "paper",
   "payload_type": "decision",
@@ -8,12 +8,12 @@
     "strategy": "trend-long-short",
     "instId": "BTC-USDT",
     "signal": "hold",
-    "reason": "no trend cross",
+    "reason": "volatility too low",
     "stop_price": null,
     "take_profit_price": null,
     "regime": "neutral",
     "size_multiplier": 0.0,
-    "last_close": 63995.9,
+    "last_close": 64129.4,
     "execute": false,
     "state_path": "data/auto_trade_state.json"
   }
