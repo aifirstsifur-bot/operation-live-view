@@ -1,5 +1,5 @@
 {
-  "published_at": "2026-08-17T08:38:54Z",
+  "published_at": "2026-08-17T08:43:56Z",
   "source": "quant-trading-okx",
   "mode": "paper",
   "payload_type": "decision",
@@ -13,7 +13,7 @@
     "take_profit_price": null,
     "regime": "neutral",
     "size_multiplier": 0.0,
-    "last_close": 63398.9,
+    "last_close": 63373.5,
     "execute": false,
     "state_path": "data/auto_trade_state.json"
   }
