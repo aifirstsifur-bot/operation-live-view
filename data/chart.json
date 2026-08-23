@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-08-23T13:58:39Z",
+  "generated_at": "2026-08-23T14:03:42Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1786413600000,
-      "open": 64063.7,
-      "high": 64088.7,
-      "low": 64033.1,
-      "close": 64044.6
-    },
     {
       "ts": 1786417200000,
       "open": 64044.6,
@@ -2101,10 +2094,36 @@
       "open": 77208.0,
       "high": 77764.6,
       "low": 77194.2,
-      "close": 77459.4
+      "close": 77486.8
+    },
+    {
+      "ts": 1787493600000,
+      "open": 77486.9,
+      "high": 77617.5,
+      "low": 77479.3,
+      "close": 77549.5
     }
   ],
-  "markers": [],
+  "markers": [
+    {
+      "ts": 1787493600000,
+      "price": 77588.27475,
+      "side": "buy",
+      "action": "entry",
+      "reason": "backtest long entry",
+      "strategy": "trend-long-short",
+      "source": "backtest"
+    },
+    {
+      "ts": 1787493600000,
+      "price": 77510.72525,
+      "side": "sell",
+      "action": "exit",
+      "reason": "end_of_data",
+      "strategy": "trend-long-short",
+      "source": "backtest"
+    }
+  ],
   "backtest": {
     "strategy": "trend-long-short",
     "window_candles": 300,
@@ -2134,18 +2153,18 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 10000.0,
-      "total_return_pct": 0.0,
-      "max_drawdown_pct": 0.0,
-      "trades": 0,
-      "win_rate_pct": 0,
-      "profit_factor": 0,
-      "avg_trade_pnl": 0,
-      "worst_trade_pnl": 0,
-      "best_trade_pnl": 0,
+      "ending_cash": 9987.505383706202,
+      "total_return_pct": -0.12494616293797778,
+      "max_drawdown_pct": 0.02082436048965974,
+      "trades": 1,
+      "win_rate_pct": 0.0,
+      "profit_factor": 0.0,
+      "avg_trade_pnl": -12.49461629379774,
+      "worst_trade_pnl": -12.49461629379774,
+      "best_trade_pnl": -12.49461629379774,
       "consecutive_losses": 0,
-      "total_fees": 0,
-      "total_funding_cost": 0
+      "total_fees": 8.329744195865386,
+      "total_funding_cost": 0.0
     }
   },
   "validation": {
