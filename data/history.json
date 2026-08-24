@@ -1,5 +1,36 @@
 [
   {
+    "published_at": "2026-08-24T11:40:03Z",
+    "source": "quant-trading-okx",
+    "mode": "paper",
+    "payload_type": "decision",
+    "payload": {
+      "action": "entry",
+      "strategy": "trend-long-short",
+      "instId": "BTC-USDT",
+      "signal": "buy",
+      "reason": "uptrend SMA cross; regime=bullish",
+      "stop_price": 77254.94155235942,
+      "take_profit_price": 79992.83767146087,
+      "regime": "bullish",
+      "size_multiplier": 1.0,
+      "last_close": 78350.1,
+      "execute": false,
+      "state_path": "data/auto_trade_state.json",
+      "position_side": "long",
+      "order": {
+        "side": "buy",
+        "size": 0.04565549405907455,
+        "base_size": 0.04565549405907455,
+        "size_multiplier": 1.0,
+        "price": 78350.1,
+        "reduce_only": false,
+        "reason": "uptrend SMA cross; regime=bullish"
+      },
+      "dry_run": true
+    }
+  },
+  {
     "published_at": "2026-08-24T11:35:01Z",
     "source": "quant-trading-okx",
     "mode": "paper",
@@ -1975,26 +2006,6 @@
       "regime": "bullish",
       "size_multiplier": 0.0,
       "last_close": 77173.6,
-      "execute": false,
-      "state_path": "data/auto_trade_state.json"
-    }
-  },
-  {
-    "published_at": "2026-08-24T03:17:48Z",
-    "source": "quant-trading-okx",
-    "mode": "paper",
-    "payload_type": "decision",
-    "payload": {
-      "action": "hold",
-      "strategy": "trend-long-short",
-      "instId": "BTC-USDT",
-      "signal": "hold",
-      "reason": "no trend cross",
-      "stop_price": null,
-      "take_profit_price": null,
-      "regime": "bullish",
-      "size_multiplier": 0.0,
-      "last_close": 77188.5,
       "execute": false,
       "state_path": "data/auto_trade_state.json"
     }
