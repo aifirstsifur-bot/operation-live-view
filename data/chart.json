@@ -1,15 +1,8 @@
 {
-  "generated_at": "2026-08-31T20:59:07Z",
+  "generated_at": "2026-08-31T21:04:11Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
-    {
-      "ts": 1787130000000,
-      "open": 64418.1,
-      "high": 64478.0,
-      "low": 64360.4,
-      "close": 64429.3
-    },
     {
       "ts": 1787133600000,
       "open": 64429.4,
@@ -2101,29 +2094,17 @@
       "open": 78897.9,
       "high": 79170.7,
       "low": 78786.3,
-      "close": 78870.5
-    }
-  ],
-  "markers": [
-    {
-      "ts": 1787569200000,
-      "price": 78477.61919999999,
-      "side": "buy",
-      "action": "entry",
-      "reason": "backtest long entry",
-      "strategy": "trend-long-short",
-      "source": "backtest"
+      "close": 78860.7
     },
     {
-      "ts": 1787623200000,
-      "price": 80113.47808763472,
-      "side": "sell",
-      "action": "exit",
-      "reason": "take_profit",
-      "strategy": "trend-long-short",
-      "source": "backtest"
+      "ts": 1788210000000,
+      "open": 78860.7,
+      "high": 78864.5,
+      "low": 78779.1,
+      "close": 78835.9
     }
   ],
+  "markers": [],
   "backtest": {
     "strategy": "trend-long-short",
     "window_candles": 300,
@@ -2153,18 +2134,18 @@
     },
     "report": {
       "starting_cash": 10000.0,
-      "ending_cash": 10066.109389868247,
-      "total_return_pct": 0.6610938986824744,
-      "max_drawdown_pct": 0.336421399235949,
-      "trades": 1,
-      "win_rate_pct": 100.0,
+      "ending_cash": 10000.0,
+      "total_return_pct": 0.0,
+      "max_drawdown_pct": 0.0,
+      "trades": 0,
+      "win_rate_pct": 0,
       "profit_factor": 0,
-      "avg_trade_pnl": 66.10938986824729,
-      "worst_trade_pnl": 66.10938986824729,
-      "best_trade_pnl": 66.10938986824729,
+      "avg_trade_pnl": 0,
+      "worst_trade_pnl": 0,
+      "best_trade_pnl": 0,
       "consecutive_losses": 0,
-      "total_fees": 7.0971294092575885,
-      "total_funding_cost": 0.0
+      "total_fees": 0,
+      "total_funding_cost": 0
     }
   },
   "validation": {
