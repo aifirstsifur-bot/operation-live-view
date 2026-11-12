@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T08:05:21Z",
+  "generated_at": "2026-11-12T08:10:24Z",
   "instId": "BTC-USDT",
   "bar": "1H",
   "candles": [
@@ -2101,7 +2101,7 @@
       "open": 73655.4,
       "high": 73698.8,
       "low": 73637.7,
-      "close": 73679.8
+      "close": 73666.3
     }
   ],
   "markers": [],
