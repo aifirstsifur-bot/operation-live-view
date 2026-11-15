@@ -1,20 +1,31 @@
 {
-  "published_at": "2026-11-15T20:59:42Z",
+  "published_at": "2026-11-15T21:04:46Z",
   "source": "quant-trading-okx",
   "mode": "paper",
   "payload_type": "decision",
   "payload": {
-    "action": "hold",
+    "action": "entry",
     "strategy": "trend-long-short",
     "instId": "BTC-USDT",
-    "signal": "hold",
-    "reason": "no trend cross",
-    "stop_price": null,
-    "take_profit_price": null,
+    "signal": "sell",
+    "reason": "downtrend SMA cross; regime=defensive",
+    "stop_price": 66441.45318961632,
+    "take_profit_price": 63210.07021557551,
     "regime": "defensive",
-    "size_multiplier": 0.0,
-    "last_close": 65129.1,
+    "size_multiplier": 1.0,
+    "last_close": 65148.9,
     "execute": false,
-    "state_path": "data/auto_trade_state.json"
+    "state_path": "data/auto_trade_state.json",
+    "position_side": "short",
+    "order": {
+      "side": "sell",
+      "size": 0.03868312762807218,
+      "base_size": 0.03868312762807218,
+      "size_multiplier": 1.0,
+      "price": 65148.9,
+      "reduce_only": false,
+      "reason": "downtrend SMA cross; regime=defensive"
+    },
+    "dry_run": true
   }
 }
